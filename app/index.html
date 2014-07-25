@@ -14,6 +14,28 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
+
+     <!--自己引入-->
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>活动列表</title>
+      <link href="styles/bootstrap.min.css" rel="stylesheet" media="screen">
+      <link href="styles/font-awesome.min.css" rel="stylesheet" media="screen">
+      <link href="styles/android.css" rel="stylesheet" media="screen">
+
+      <script src="js/jquery-2.0.0.min.js"></script>
+      <script src="js/bootstrap.min.js"></script>
+
+      <script type="application/javascript" src="js/iscroll-lite.js"></script>
+      <script type="text/javascript">
+          var myScroll;
+          function loaded() {
+              setTimeout(function () {
+                  myScroll = new iScroll('wrapper');
+              }, 100);
+          }
+      </script>
+
   </head>
   <body ng-app="angularApp">
     <!--[if lt IE 7]>
@@ -24,11 +46,9 @@
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
+
         </ul>
-        <h3 class="text-muted">angular</h3>
+
       </div>
 
       <div ng-view=""></div>
@@ -72,10 +92,12 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/route/route.js"></script>
+        <script src="scripts/controllers/ActivitiesLists_controller.js"></script>
+        <script src="scripts/controllers/ActivitiesRegister_controller.js"></script>
+        <script src="scripts/controllers/CreateActivity_controller.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -1,7 +1,6 @@
 
 <header>
-    活动列表
-    （共有+{{count}}+个活动）
+    活动列表（共有+{{count}}+个活动）  <!--好像有一个函数可以获得localstroage的存储个数-->
     <div class="header-left">
         <a href="#" class="side-slide-trigger btn-style btn-4"><i>返回</i></a>
     </div>
@@ -14,15 +13,13 @@
 
 <div id="wrapper" class="wrapper">
     <ul class="list-style-2">
-        <li ng-repeat="activity in Activities | filter:createtime" ng-click='Register()'>
-            <a href="ActivitiesRegister.html">
-            <h3>activity.name</h3>
-            <p>activity.createtime</p>
+        <li ng-repeat="activity in Activities>
+            <a href="><a>
+                <h3>activity.name</h3>
         </li>
-
         <li>
             <a href="">
-                <h3>为答谢各界朋友对本店的厚爱，现开展……</h3>
+                <h3 href="">为答谢各界朋友对本店的厚爱，现开展……</h3>
                 <p>2013年2月9日 15:36</p>
             </a>
         </li>
@@ -45,18 +42,13 @@
                 <p>2013年2月9日 15:36</p>
             </a>
         </li>
+
 
     </ul>
 
 </div>
 
 
-<footer>
-    <ul class="footer-nav footer-nav-2tabs">
-        <li><a href="weibo-list.html"><i class="icon-twitter"></i><br />报名</a></li>
-        <li class="active"><a href="weibo-analyze-list.html"><i class="icon-tasks"></i><br />竞价</a></li>
-    </ul>
-</footer>
 
 
 
