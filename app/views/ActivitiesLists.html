@@ -1,6 +1,6 @@
-
+<html ng-app>
 <header>
-    活动列表（共有+{{count}}+个活动）  <!--好像有一个函数可以获得localstroage的存储个数-->
+    活动列表 <!--好像有一个函数可以获得localstroage的存储个数-->
     <div class="header-left">
         <a href="#" class="side-slide-trigger btn-style btn-4"><i>返回</i></a>
     </div>
@@ -13,42 +13,18 @@
 
 <div id="wrapper" class="wrapper">
     <ul class="list-style-2">
-        <li ng-repeat="activity in Activities>
-            <a href="><a>
-                <h3>activity.name</h3>
-        </li>
-        <li>
+        <li ng-repeat="activity in Activities">
             <a href="">
-                <h3 href="">为答谢各界朋友对本店的厚爱，现开展……</h3>
-                <p>2013年2月9日 15:36</p>
+             <h3>activity.name</h3>
             </a>
-        </li>
-        <li>
-            <a href="">
-                <h3>为答谢各界朋友对本店的厚爱，现开展……</h3>
-                <p>2013年2月9日 15:36</p>
-            </a>
-        </li>
-        <li>
-            <a href="">
-                <h3>为答谢各界朋友对本店的厚爱，现开展……</h3>
-                <p>2013年2月9日 15:36</p>
 
-            </a>
         </li>
-        <li>
-            <a href="">
-                <h3>为答谢各界朋友对本店的厚爱，现开展……</h3>
-                <p>2013年2月9日 15:36</p>
-            </a>
-        </li>
-
 
     </ul>
-
+  <ul> <p>一共有：{{actcount}}个活动<p></ul>
 </div>
 
-
+</html>
 
 
 
