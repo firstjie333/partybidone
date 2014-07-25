@@ -26,10 +26,10 @@ angular.module('angularApp')
         //$scope.actcount='1111'
         //$scope.Activities = Act.unshift(activity);
         //$scope.actcount='1111';
-        $scope.actcount='选人';
-        $scope.jump=function()
+        $scope.count='选人';//设置为活动列表的个数
+        $scope.go_create=function()
         {
-            $location.path('/CreateActivity')
+            $location.path('/CreateActivity');
         }
 
         $socpe.Activities=JSON.parse(localStorage.getItem('activities'));

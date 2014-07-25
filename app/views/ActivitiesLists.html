@@ -1,11 +1,8 @@
 <html ng-app>
 <header>
     活动列表 <!--好像有一个函数可以获得localstroage的存储个数-->
-    <div class="header-left">
-        <a href="#" class="side-slide-trigger btn-style btn-4"><i>返回</i></a>
-    </div>
     <div class="header-right">
-        <a href="#" class="btn-style btn-4 " ng-click="go_back()"><i>刷新</i> </a>
+        <a href="views/CreateActivity.html" class="btn-style btn-4 "><i>创建活动</i> </a>
     </div>
 </header>
 
@@ -14,14 +11,18 @@
 <div id="wrapper" class="wrapper">
     <ul class="list-style-2">
         <li ng-repeat="activity in Activities">
-            <a href="">
+            <a href="views/ActivitiesRegister.html">
              <h3>activity.name</h3>
             </a>
-
+        </li>
+        <a href="views/ActivitiesRegister.html">
+            <h3>试一试</h3>
+        </a>
         </li>
 
+
     </ul>
-  <ul> <p>一共有：{{actcount}}个活动<p></ul>
+  <ul> <p>当前一共有：{{count}}个活动<p></ul>
 </div>
 
 </html>

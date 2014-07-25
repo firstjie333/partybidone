@@ -23,11 +23,11 @@ angular
       // templateUrl: 'views/ActivitiesLists.html',
       // controller: 'ActivitiesListsController'
     // })
-      .when('/ActivitiesLists', {
+      .when('/', {
         templateUrl: 'views/ActivitiesLists.html',
         controller: 'ActivitiesListsController'
       })
-      .when('/', {
+      .when('/ActivitiesRegister', {
          templateUrl: 'views/ActivitiesRegister.html',
          controller: 'ActivitiesRegisterController'
       })
