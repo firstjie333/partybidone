@@ -6,18 +6,18 @@
         <a href="#" class="side-slide-trigger btn-style btn-4"><i>返回</i></a>
     </div>
     <div class="header-right">
-        <a href="#" class="btn-style btn-4"><i>刷新</i> </a>
+        <a href="#" class="btn-style btn-4 " ng-click="go_back()"><i>刷新</i> </a>
     </div>
 </header>
 
 
-        
+
 <div id="wrapper" class="wrapper">
     <ul class="list-style-2">
-        <li ng-repeat="activity in Activities" ng-click='Register()'>
+        <li ng-repeat="activity in Activities | filter:createtime" ng-click='Register()'>
             <a href="ActivitiesRegister.html">
-            <h3>谢谢</h3>
-            <p>谢谢</p>
+            <h3>activity.name</h3>
+            <p>activity.createtime</p>
         </li>
 
         <li>
