@@ -5,10 +5,14 @@
 
 angular.module('angularApp')
     .controller('ActivitiesRegisterController', function ($scope) {
-        $scope.awesomeThings = [
-            'HTML5 Boilerplate',
-            'AngularJS',
-            'Karma'
-        ];
+
+    //显示具体的活动名称
+    $scope.getname=JSON.parse(localStorage.getItem('details'));
+
+    //
+    $scope.go_back=function()
+        {
+            $location.path('/ActivitiesLists');
+        }
 
     });

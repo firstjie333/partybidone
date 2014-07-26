@@ -1,7 +1,7 @@
 <header>
     创建活动
     <div class="header-left">
-       <button ng-show='show'  class="side-slide-trigger btn-style btn-4" ng-click="go_back()">返回</button>
+       <button ng-show='showBackButton'  class="side-slide-trigger btn-style btn-4" ng-click="go_back()">返回</button>
        <!--show--><!--go_back()-->
     </div>
 </header>
@@ -15,7 +15,7 @@
     <br/>
     <p>{{show}}</p>
     <button ng-disabled='!name' class='btn'  ng-click='confirm()'>确认创建</button>
-    <p ng-show='showerror' style='color:red'>*该活动名称已经被使用，请重新输入活动名称</p>
-    <!--confirm()--><!--showerror-->
+    <p ng-show='error' style='color:red'>*该活动名称已经被使用，请重新输入活动名称</p>
+    <!--confirm()--><!--error-->
 </div>
 

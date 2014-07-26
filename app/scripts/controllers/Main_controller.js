@@ -9,13 +9,13 @@ angular.module('angularApp')
 
      // $scope.count=JSON.parse(localStorage.getItem('activities'))||[];
 
-            if(localStorage.getItem('activities').length==null)
+            if(JSON.parse(localStorage.getItem('activities')).length!=null)
            {
-               $location.path('/CreateActivity');
+               $location.path('/ActivitiesLists');
            }
            else
            {
-               $location.path('/ActivitiesLists');
+               $location.path('/CreateActivity');
            }
 
     });

@@ -1,28 +1,18 @@
 <header>
-    活动列表 <!--好像有一个函数可以获得localstroage的存储个数-->
+    活动列表（当前共有{{count}}个活动）
     <div class="header-right">
         <button class="btn-style btn-4" ng_click="go_create()">创建活动</button>
     </div>
+    <!--go_create()-->
 </header>
 
 <div id="wrapper" class="wrapper">
-    <ul class="list-style-2">
-        <li ng-repeat="activity in Activities">
-            <a href="views/ActivitiesRegister.html">
-             <h3>activity.name</h3>
-            </a>
-        </li>
-        <a href="views/ActivitiesRegister.html">
-            <h3>试一试</h3>
-        </a>
-        </li>
-        </li>
-        <a href="views/ActivitiesRegister.html">
-            <h3>试一试</h3>
-            <p>当前一共有：{{count}}个活动<p>
-        </a>
+    <ul class="list-style-2" >
+        <li ng-repeat="activity in Activities" ng-click="details(activity.name)" >
+            <h2 align="center"> {{activity.name}}</h2>
         </li>
     </ul>
+    <!--Activities--><!--details()-->
 </div>
 
 
