@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('angularApp')
-    .controller('ActivitiesRegisterController', function ($scope) {
+    .controller('ActivitiesRegisterController', function ($scope,$location) {
 
     //显示具体的活动名称
     $scope.getname=JSON.parse(localStorage.getItem('details'));
