@@ -19,11 +19,11 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-     // .when('/', {
-      // templateUrl: 'views/ActivitiesLists.html',
-      // controller: 'ActivitiesListsController'
-    // })
-      .when('/', {
+        .when('/',{
+            templateUrl:'views/initial.html',
+            controller: 'MainController'
+       })
+      .when('/ActivitiesLists', {
         templateUrl: 'views/ActivitiesLists.html',
         controller: 'ActivitiesListsController'
       })

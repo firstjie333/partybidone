@@ -15,7 +15,7 @@
 
 
 angular.module('angularApp')
-    .controller('ActivitiesListsController', function ($scope) {
+    .controller('ActivitiesListsController', function ($scope,$location) {
         $scope.awesomeThings = [
             'HTML5 Boilerplate',
             'AngularJS',
@@ -26,13 +26,12 @@ angular.module('angularApp')
         //$scope.actcount='1111'
         //$scope.Activities = Act.unshift(activity);
         //$scope.actcount='1111';
-        $scope.count='选人';//设置为活动列表的个数
+      //  $scope.Activities=JSON.parse(localStorage.getItem('activities'));
+        $scope.count='3';
         $scope.go_create=function()
         {
             $location.path('/CreateActivity');
         }
-
-        $socpe.Activities=JSON.parse(localStorage.getItem('activities'));
     });
 
 

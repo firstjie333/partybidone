@@ -3,7 +3,7 @@
     创建活动
     <div class="header-left">
         <!--getActCount()：获得活动个数，如果为0个，那么不显示返回按钮，相应的函数定义在对应Controller.js中-->
-        <a href="views/ActivitiesLists.html" class="side-slide-trigger btn-style btn-4">  <i></i>返回</i></a>
+        <button ng-show={{show}}  class="side-slide-trigger btn-style btn-4" ng-click="go_back()">返回</button>
     </div>
 </header>
 
@@ -11,11 +11,11 @@
 <div align="center" id="wrapper" class="wrapper">
     <br/>
     <p >请输入活动名称</p>
-    <input  class='well full' ng-model="name" ng-disabled='false' type='text'/>
+    <input  class='well full' ng-model='name' type='text'/>
     <br/>
     <br/>
-    <button class=".btn"  ng-disable={{name!=""}}  ng-click="confirm()" >确认创建</button>
-    <p ng-show=true style="color:red">*该活动名称已经被使用，请重新输入活动名称</p>
+    <button ng-disabled=false class='.btn'  ng-click='confirm()' >确认创建</button>
+    <p ng-show='false' style='color:red'>*该活动名称已经被使用，请重新输入活动名称</p>
 </div>
     <!--name变量:绑定了文本框的输入内容:可以在页面上测试一下：<p>{{name}}</p>-->
         <!--ng-disabled:当-->
