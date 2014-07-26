@@ -27,7 +27,7 @@ angular.module('angularApp')
         //$scope.Activities = Act.unshift(activity);
         //$scope.actcount='1111';
       //  $scope.Activities=JSON.parse(localStorage.getItem('activities'));
-        $scope.count='3';
+        $scope.count='5';
         $scope.go_create=function()
         {
             $location.path('/CreateActivity');
