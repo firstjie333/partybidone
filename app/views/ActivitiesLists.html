@@ -1,5 +1,5 @@
 <header>
-    活动列表（当前共有{{count}}个活动）
+    活动列表
     <title>活动列表</title>
     <div class="header-right">
         <button class="btn-style btn-4" ng_click="go_create()" >创建活动</button>
@@ -8,10 +8,10 @@
 </header>
 
 
-<div id="wrapper" class="wrapper">
+<div class="wrapper">
     <ul class="list-style-2" >
         <li ng-repeat="activity in Activities" ng-click="details(activity.name)" >
-            <h2 align="center"> {{activity.name}}</h2>
+           <p align="left">{{activity.name}}</p>
         </li>
     </ul>
     <!--Activities--><!--details()-->

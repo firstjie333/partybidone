@@ -28,9 +28,11 @@ angular.module('angularApp')
             $location.path('/CreateActivity');
         }
 
+//         //不是需求，不添加
+//        //变量：count活动个数
+//        $scope.count=JSON.parse(localStorage.getItem('activities')).length;
 
-        //变量：count活动个数
-        $scope.count=JSON.parse(localStorage.getItem('activities')).length;
+
         //函数：go_create()：确认创建按钮
         $scope.go_create=function()
         {

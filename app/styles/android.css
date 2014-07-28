@@ -41,6 +41,7 @@ hr {
 
 
 .wrapper {
+    font-size: 6px;
 	position:absolute; z-index:1;
 	top:45px;
 	bottom:64px;
@@ -74,8 +75,8 @@ hr {
 
 header {
     /*FJ:蓝色背景*/
-    background-color: blue;
-    color: blue;
+    /*background-color: blue;*/
+    /*color: blue;*/
 	position:absolute; z-index:2;
 	top:0; left:0px;
 	width:100%;
@@ -131,36 +132,44 @@ footer {
 
 .footer-nav {
 	margin-left: 0px;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6));
+    color: #ffffff;
 }
 
 .footer-nav li {
 	float: left;
 	list-style: none;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6));
+    color: #ffffff;
 }
 
 .footer-nav li a {
+    background-color: #0000ff;
 	display: block;
 	padding:6px 0;
 	text-align: center;
-	color: #fff;
+	/*color: #0000ff;*/
 	font-size: 12px;
 	font-weight: normal;
-	text-shadow: #222 -1px -1px;
+	/*text-shadow: #222 -1px -1px;*/
 	text-decoration: none;
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #3d3d3d), color-stop(1, #272727));
-}
+	}
 
 .footer-nav li :hover button, .footer-nav li:active button, .footer-nav li.active button {
-	color: #2cc0ff;
-	text-shadow: #000 -1px -1px;
+	/*color: #2cc0ff;*/
+	/*text-shadow: #000 -1px -1px;*/
 	border-left: none;
 	border-right: none;
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #242424), color-stop(1, #242424));
-}
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6));
+    color: #ffffff;
+	}
 
 .footer-nav li button i {
 	font-size: 30px;
 	font-weight: normal;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6));
+    color: #ffffff;
+    height: 100%;
 }
 
 .footer-nav-4tabs li {
@@ -173,6 +182,8 @@ footer {
 
 .footer-nav-2tabs li  {
 	width: 50%;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #0079c8), color-stop(1, #0067b6));
+    color: #ffffff;
 }
 
 .side-slide-left {
@@ -328,6 +339,7 @@ footer {
 }
 
 .btn-style {
+    width: 100%;
 	display: inline-block;
 	position: relative;
 	font-size: 16px;
@@ -413,7 +425,9 @@ footer {
 }
 
 .btn-4 {
-	line-height: 30px;
+    width:100%;
+	line-height: 35px;
+    font-size: 20px;
 	padding:0px 16px;
 	border-radius: 4px;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #5ab6fc), color-stop(0.02, #1296eb), color-stop(1, #0073c4));
@@ -426,11 +440,13 @@ footer {
 }
 
 .btn-4:active, .btn-4.active {
+
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #1a86cf), color-stop(0.02, #0066b6), color-stop(1, #004f8f));
-	box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);
+	/*box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);*/
 }
 
 .btn-5 {
+
 	line-height: 45px;
 	padding:0 24px;
 	border-left: 1px solid #005b9b;
@@ -455,6 +471,10 @@ footer {
 	left:-2px;
 	top: 0px;
 	display: block;
+}
+
+.btn-6{
+
 }
 
 .btn-style-group {
@@ -570,6 +590,7 @@ footer {
 
 
 .list-style-2 {
+    line-height: 40px;
 	list-style:none;
 	padding:0;
 	margin:0;
@@ -577,12 +598,14 @@ footer {
 	text-align:left;
 }
 
+
 .list-style-2 li {
+
 	padding:0 10px;
 	border-bottom:1px solid #ccc;
 	border-top:1px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
-	font-size:14px;
+	font-size:16px;
 	position: relative;
 }
 
@@ -613,10 +636,11 @@ footer {
 	margin: 3px 0 2px 0;
 	padding: 0;
 }
-
+/*修改*/
 .list-style-2 p {
-	font-size: 12px;
-	color: #999;
+	font-size: 15px;
+    text-index:5em;
+	color:#000000;
 	margin: 0 0 5px 0;
 }
 
@@ -738,8 +762,9 @@ footer {
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #3697dd), color-stop(1, #0070bd));
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-}
 
+
+}
 
 
 
