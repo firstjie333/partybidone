@@ -21,15 +21,28 @@ angular.module('angularApp')
         //Activities.unshift(activity);   // 按照倒叙将activity中的数据压栈到activities中
         //  $scope.Activities=JSON.parse(localStorage.getItem('activities'));
 
+
+        //初始化跳转判断
+        if(localStorage.getItem('activities')==null)
+        {
+            $location.path('/CreateActivity');
+        }
+
+
+        //变量：count活动个数
         $scope.count=JSON.parse(localStorage.getItem('activities')).length;
+        //函数：go_create()：确认创建按钮
         $scope.go_create=function()
         {
             $location.path('/CreateActivity');
         }
-        //
+        //将localstorage里面的activities数组取出，reverse（）方法实现倒叙输出
         $scope.Activities=(JSON.parse(localStorage.getItem('activities'))).reverse();
 
-       //ng-click某个具体的事件
+
+       //ng-click：对应details函数
+       //function：details
+       //input：name（即html页面对应的所选活动名称）
        // 会将参数传入localstorage：我取名为details（每次覆盖都没有问题）
        //会跳转到创建活动页面
 

@@ -3,6 +3,7 @@
 angular.module('angularApp')
     .controller('CreateActivityController', function ($scope,$location) {
 
+
         //是否显示返回按钮
         ////返回按钮的ng-click：go—back事件
         $scope.error=false;
@@ -28,11 +29,11 @@ angular.module('angularApp')
                         return;
                     }
                 }
-                id=(JSON.parse(localStorage.getItem('activities'))).length;
+                id=localStorage.getItem('activities')==null ? 0 : (JSON.parse(localStorage.getItem('activities'))).length;
             }
 
             //存储活动信息到localstorage：activities
-            var activity = {"name": name, "id": id+1};
+            var activity = {"name": name, "id": id+1,"createtime":""};
             acts.push(activity);
             localStorage.setItem("activities",JSON.stringify(acts));
 
