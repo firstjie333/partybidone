@@ -13,7 +13,7 @@ angular.module('angularApp')
             }
 
         //确认按钮的ng-click:confirm事件:
-        $scope.confirm= function ()
+        $scope.confirm= function (name)
         {
             var acts = JSON.parse(localStorage.getItem('activities') || '[]');
             var id;
@@ -23,16 +23,17 @@ angular.module('angularApp')
             if(acts!=null)
             {
                 for (var i = 0; i < acts.length; i++) {
-                    if (acts[i].name == $scope.name) {
+                    if (acts[i].name ==name) {
                         $scope.error = true;
                         return;
                     }
                 }
                 id=(JSON.parse(localStorage.getItem('activities'))).length;
             }
+
             //存储活动信息到localstorage：activities
-            var activity = {"name": $scope.name, "id": id+1};
-            acts.push(activity); //  将textbox输入文档中的内容添加到变量activity中
+            var activity = {"name": name, "id": id+1};
+            acts.push(activity);
             localStorage.setItem("activities",JSON.stringify(acts));
 
 
