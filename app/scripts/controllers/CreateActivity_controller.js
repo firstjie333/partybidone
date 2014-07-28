@@ -30,10 +30,17 @@ angular.module('angularApp')
                 }
                 id=(JSON.parse(localStorage.getItem('activities'))).length;
             }
-
+            //存储活动信息到localstorage：activities
             var activity = {"name": $scope.name, "id": id+1};
-            acts.push(activity); //  将txt输入文档中的内容添加到变量activity中
+            acts.push(activity); //  将textbox输入文档中的内容添加到变量activity中
             localStorage.setItem("activities",JSON.stringify(acts));
+
+
+            //传递活动信息参数到localstorage：details
+            var detail={"name":name};
+            localStorage.removeItem("details");
+            localStorage.setItem("details",JSON.stringify(detail));
             $location.path('/ActivitiesRegister');
+
             }
 });
