@@ -39,7 +39,7 @@ angular.module('angularApp')
         {
 
             var detail={"name":name};
-            localStorage.removeItem("details")
+            localStorage.removeItem("details");
             localStorage.setItem("details",JSON.stringify(detail));
             $location.path('/ActivitiesRegister');
             //注意还应该传入一些参数信息哦,利用localstorage

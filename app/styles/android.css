@@ -150,7 +150,7 @@ footer {
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #3d3d3d), color-stop(1, #272727));
 }
 
-.footer-nav li:hover a, .footer-nav li:active a, .footer-nav li.active a {
+.footer-nav li :hover button, .footer-nav li:active button, .footer-nav li.active button {
 	color: #2cc0ff;
 	text-shadow: #000 -1px -1px;
 	border-left: none;
@@ -158,7 +158,7 @@ footer {
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #242424), color-stop(1, #242424));
 }
 
-.footer-nav li a i {
+.footer-nav li button i {
 	font-size: 30px;
 	font-weight: normal;
 }
@@ -171,7 +171,7 @@ footer {
 	width: 33.3333%;
 }
 
-.footer-nav-2tabs li {
+.footer-nav-2tabs li  {
 	width: 50%;
 }
 
