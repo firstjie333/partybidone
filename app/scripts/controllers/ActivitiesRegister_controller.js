@@ -15,4 +15,12 @@ angular.module('angularApp')
             $location.path('/ActivitiesLists');
         }
 
+    $scope.go_start=function()
+    {
+        //开启报名
+        //显示当前有有哪些报名信息
+        //信息是倒叙显示
+
+    }
+
     });
