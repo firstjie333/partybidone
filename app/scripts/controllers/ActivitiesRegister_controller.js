@@ -15,6 +15,10 @@ angular.module('angularApp')
             $location.path('/ActivitiesLists');
         }
 
+    //显示活动已经报名人数
+    $scope.message_count=localStorage.getItem('messages')==null ? 0:JSON.parse(localStorage.getItem('activities')).length;
+
+
     $scope.go_start=function()
     {
         //开启报名
