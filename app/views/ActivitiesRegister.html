@@ -4,20 +4,23 @@
     <div class="header-left">
        <button class="side-slide-trigger btn-style btn-4" ng-click="go_back()" >返回</button>
     </div>
-    <div class="header-right">
-        <button class="btn-style btn-4 " ng-click="go_start()">开始</button>
+    <div class="header-right"  ng-switch="activity_status" >
+        <button ng-switch-when="begin" class="btn-style btn-4 " ng-click="go_end()">结束</button>
+        <button ng-switch-when="end"  class="btn-style btn-4 " ng-click="go_begin()">开始</button>
+        <button ng-switch-default  class="btn-style btn-4 "  ng-click="go_begin()">开始</button>
     </div>
     <!--go_back()--> <!--go_start():这里没有要求开始按钮的跳转-->
+
+
 </header>
 
 
 <div class="wrapper" align="center">
     <b><h2 >{{getname.name}}</h2></b>
-    <!--<li ng-repeat="message in messages">-->
+    <li ng-repeat="message in Messages">
         <h5 class="header-left">{{message.username}}张三</h5>
         <h5 class="header-right">{{message.telephone}}12375766332</h5>
-        显示具体活动信息
-    <!--</li>-->
+    </li>
 </div>
 
 
