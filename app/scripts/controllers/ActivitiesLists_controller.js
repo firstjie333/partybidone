@@ -56,6 +56,14 @@ angular.module('angularApp')
             //注意还应该传入一些参数信息哦,利用localstorage
         }
 
+//
+        $scope.showYellow=function(activity_name)
+        {
+            if((JSON.parse(localStorage.getItem('begin_activity'))).activity_name==activity_name)
+                {return "begin-yellow";}
+        }
+
+
 
     });
 

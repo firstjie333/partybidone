@@ -10,10 +10,10 @@
 
 <div class="wrapper">
     <ul class="list-style-2" >
-        <li ng-repeat="activity in Activities" ng-click="details(activity.activity_name)" class="" >
+        <li ng-repeat="activity in Activities" ng-click="details(activity.activity_name)" ng-model="activity" class={{showYellow(activity.activity_name)}}>
             <br/>
-            <p class="header-left">{{activity.activity_name}}</p>
-            <p class="header-right">></p>
+            <span class="header-left " >{{activity.activity_name}}</span>
+            <span class="header-right" > > </span>
             <br/>
         </li>
     </ul>

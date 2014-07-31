@@ -32,10 +32,9 @@ angular.module('angularApp')
        $scope.getname=JSON.parse(localStorage.getItem('details'));
 
 
-//go_back()返回啊按钮单击事件
+//go_back()返回按钮单击事件
     $scope.go_back=function()
         {
-
             $location.path('/ActivitiesLists');
         }
 
@@ -48,7 +47,7 @@ angular.module('angularApp')
     {
         $scope.activity_status="begin";
         //存储开始报名的活动名称
-        var the_begin_activity={"activity_name":name};
+        var the_begin_activity={"activity_name":($scope.getname).details_name};
         localStorage.removeItem("begin_activity");
         localStorage.setItem("begin_activity",JSON.stringify(the_begin_activity));
         //存储短信报名信息
