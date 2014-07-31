@@ -773,6 +773,11 @@ footer {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 
+.begin_activity{
+    background: yellow !important
+    /*!important的意思是：可能原来的css中就有颜色控制,这时候如不加此句,则颜色可能会显示不出来*/
+}
+
 
 }
 
