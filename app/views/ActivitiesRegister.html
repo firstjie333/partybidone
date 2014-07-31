@@ -5,9 +5,9 @@
        <button class="side-slide-trigger btn-style btn-4" ng-click="go_back()" >返回</button>
     </div>
     <div class="header-right"  ng-switch="activity_status" >
-        <button ng-switch-when="begin" class="btn-style btn-4 " ng-click="go_end()">结束</button>
-        <button ng-switch-when="end"  class="btn-style btn-4 " ng-click="go_begin()">开始</button>
-        <button ng-switch-default  class="btn-style btn-4 "  ng-click="go_begin()">开始</button>
+        <button ng-switch-when="begin" class="btn-style btn-4 " ng-click="go_end()" >结束</button>
+        <button ng-switch-when="end"  class="btn-style btn-4 " ng-click="go_begin()" ng-disabled="disabled()">开始</button>
+        <button ng-switch-default  class="btn-style btn-4"  ng-click="go_begin()" ng-disabled="disabled()">开始</button>
     </div>
     <!--go_back()--> <!--go_start():这里没有要求开始按钮的跳转-->
 

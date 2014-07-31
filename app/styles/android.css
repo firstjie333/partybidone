@@ -424,6 +424,7 @@ footer {
 	top: 10px;
 }
 
+
 .btn-4 {
     width:100%;
 	line-height: 35px;
@@ -435,6 +436,8 @@ footer {
 	border: 1px solid #005b9b;
 }
 
+
+
 .btn-4:hover {
 	color: #fff;
 }
@@ -444,7 +447,14 @@ footer {
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #1a86cf), color-stop(0.02, #0066b6), color-stop(1, #004f8f));
 	/*box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);*/
 }
-
+.btn.disabled,{
+    background-color: #fdfff8;
+}
+.btn[disabled] {
+    color: #000000;
+    /*background-color: #e6e6e6;*/
+    /**background-color: #d9d9d9;*/
+}
 .btn-5 {
 
 	line-height: 45px;

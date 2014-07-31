@@ -70,6 +70,12 @@ angular.module('angularApp')
            }
        }
 
+//
+       $scope.disabled=function()
+       {
+
+           return localStorage.getItem('begin_activity')==null ? 'false' : 'true';
+       }
 
 
 
