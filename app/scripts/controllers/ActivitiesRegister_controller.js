@@ -28,6 +28,8 @@ angular.module('angularApp')
 
     //显示活动已经报名人数
     $scope.message_count=localStorage.getItem('messages')==null ? 0:JSON.parse(localStorage.getItem('activities')).length;
+
+
     //显示活动已报名的信息
     if (localStorage.getItem('messages')!=null)
         {
@@ -36,6 +38,7 @@ angular.module('angularApp')
 
     $scope.go_begin=function()
     {
+        $scope.activity_status="begin";
 
         //开启报名
         //显示当前有有哪些报名信息
@@ -43,11 +46,16 @@ angular.module('angularApp')
         //信息是倒叙显示
 
     }
-        $scope.end=function()
+        $scope.go_end=function()
         {
-
             //弹出确认对话框，
             //是，关闭；否：继续保持报名状态
-        }
+           if(confirm("确认要结束本次报名？"))
+           {
+               $scope.activity_status="end";
+           }
+       }
+
+
 
     });
