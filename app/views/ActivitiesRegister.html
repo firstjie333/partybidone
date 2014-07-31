@@ -1,5 +1,5 @@
 <header>
-    活动报名（{{message_count}}人）
+    活动报名{{message_count}}
     <title>活动报名</title>
     <div class="header-left">
        <button class="side-slide-trigger btn-style btn-4" ng-click="go_back()" >返回</button>
@@ -13,16 +13,30 @@
 
 
 </header>
+<body>
 
-
-<div class="wrapper" align="center">
-    <b><h2 >{{getname.name}}</h2></b>
-    <li ng-repeat="message in Messages">
-        <h5 class="header-left">{{message.username}}张三</h5>
-        <h5 class="header-right">{{message.telephone}}12375766332</h5>
-    </li>
+<div class="wrapper" >
+    <!--<b><h2 >{{getname.name}}</h2></b>-->
+    <!--<h3 align="center" >{{getname.name}}</h3>-->
+    <ul  class="list-style-4" >
+        <li ng-repeat="message in Messages" >
+            <p class="header-left">{{message.user_name}}</p>
+            <p class="header-right">{{message.user_phone}}</p>
+        </li>
+    </ul>
 </div>
 
+<div class="wrapper">
+    <ul class="list-style-2" >
+        <h2 align="center">{{getname.name}}</h2>
+        <li ng-repeat="message in Messages">
+            <br/>
+            <p class="header-left">{{message.user_name}}</p>
+            <p class="header-right">{{message.user_phone}}</p>
+            <br/>
+        </li>
+    </ul>
+</div>
 
 <footer>
     <ul class="footer-nav footer-nav-2tabs">

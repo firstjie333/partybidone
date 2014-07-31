@@ -6,55 +6,59 @@
 angular.module('angularApp')
     .controller('ActivitiesRegisterController', function ($scope,$location) {
 
-    //显示具体的活动名称
-    $scope.getname=JSON.parse(localStorage.getItem('details'));
-
-//返回啊按钮单击事件
-//传递参数，判断是否有活动正在进行中
-//    $scope.go_back=function()
-//        {
-//            for (var i = 0; i <=  $scope.message_count; i++)
-//            {
-//                if (messages[i].begin =="begin")
-//                {
-//                    messages[i].begin
-//                    return;
-//                }
-//            }
-//            id=localStorage.getItem('activities')==null ? 0 : (JSON.parse(localStorage.getItem('activities'))).length;
-//
-//            $location.path('/ActivitiesLists');
-//        }
-
-    //显示活动已经报名人数
-    $scope.message_count=localStorage.getItem('messages')==null ? 0:JSON.parse(localStorage.getItem('activities')).length;
-
-
-    //显示活动已报名的信息
-    if (localStorage.getItem('messages')!=null)
+//ShowMessage():显示信息 （自定义）
+        $scope.ShowMessage=function()
         {
+            $scope.message_count=localStorage.getItem('messages')==null ? 0 : JSON.parse(localStorage.getItem('activities')).length+"人）";
+            $scope.message_count=" （"+ $scope.message_count;
             $scope.Messages=(JSON.parse(localStorage.getItem('messages'))).reverse();
         }
 
+//SaveMessage():存储信息  （自定义）
+        $scope.SaveMessage=function()
+        {
+            var mess = JSON.parse(localStorage.getItem('messages') || '[]');
+            var message = {"user_name": "username", "user_phone": "userphone","activity_name":"activityname"};
+            mess.push(message);
+            localStorage.setItem("messages",JSON.stringify(mess));
+        }
+
+//getname:显示具体活动名称
+       $scope.getname=JSON.parse(localStorage.getItem('details'));
+
+
+//go_back()返回啊按钮单击事件
+    $scope.go_back=function()
+        {
+            $location.path('/ActivitiesLists');
+        }
+
+//go_begin():开始报名按钮
+    //开启报名
+    //显示当前有有哪些报名信息
+    //将当前活动的状态保存为begin（）
+    //信息是倒叙显示
     $scope.go_begin=function()
     {
         $scope.activity_status="begin";
-
-        //开启报名
-        //显示当前有有哪些报名信息
-        //将当前活动的状态保存为begin（）
-        //信息是倒叙显示
+        //存储信息
+        $scope.SaveMessage();
+        //显示信息
+        $scope.ShowMessage();
 
     }
+
+//go_end():结束活动按钮
+        //弹出确认对话框，
+        //是，关闭；否：继续保持报名状态
         $scope.go_end=function()
         {
-            //弹出确认对话框，
-            //是，关闭；否：继续保持报名状态
            if(confirm("确认要结束本次报名？"))
            {
                $scope.activity_status="end";
            }
        }
+
 
 
 

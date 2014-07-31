@@ -28,9 +28,6 @@ angular.module('angularApp')
             $location.path('/CreateActivity');
         }
 
-//         //不是需求，不添加
-//        //变量：count活动个数
-//        $scope.count=JSON.parse(localStorage.getItem('activities')).length;
 
 
         //函数：go_create()：确认创建按钮
@@ -38,6 +35,8 @@ angular.module('angularApp')
         {
             $location.path('/CreateActivity');
         }
+
+
         //将localstorage里面的activities数组取出，reverse（）方法实现倒叙输出
         $scope.Activities=(JSON.parse(localStorage.getItem('activities'))).reverse();
 
