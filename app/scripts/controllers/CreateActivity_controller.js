@@ -32,7 +32,7 @@ angular.module('angularApp')
 
         }
 //存储活动SaveActivity（）
-        $scope.SaveActivity=function()
+        function SaveActivity()
         {
             var acts = JSON.parse(localStorage.getItem('activities') || '[]');
             var id;
@@ -51,7 +51,7 @@ angular.module('angularApp')
         }
 
 //传递活动信息参数到localstorage：details
-        $scope.SaveDetails=function()
+        function SaveDetails()
         {
             var detail={"details_name":$scope.activity_name};
             localStorage.removeItem("details");
@@ -65,8 +65,14 @@ angular.module('angularApp')
         $scope.confirm= function (name)
         {
             $scope.IsRepeat();
-            $scope.SaveActivity();
-            $scope.SaveDetails();
+            SaveActivity();
+            SaveDetails();
 
-            }
+            //设置当前状态
+            if(localStorage.getItem('begin_activity')==null)
+                { write_current_status("end_activitycreate");}
+            else
+                { write_current_status("begin_activitycreate");}
+
+        }
 });

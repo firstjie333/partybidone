@@ -106,6 +106,7 @@ angular.module('angularApp')
     //显示成功报名的报名列表（信息的倒叙显示的）ShowMessage（）
     $scope.go_begin=function()
     {
+        //开启报名：将状态信息变为begin
         $scope.this_activity_status="begin";
         //存储开始报名的活动名称
         var the_begin_activity=
@@ -115,9 +116,12 @@ angular.module('angularApp')
         localStorage.removeItem("begin_activity");
         localStorage.setItem("begin_activity",JSON.stringify(the_begin_activity));
         //存储短信报名信息
-        SaveMessage();
+        saveMessage();
         //显示成功报名列表信息
         ShowMessage();
+        //设置当前状态
+        write_current_status("begin");
+
 
     }
 
@@ -129,8 +133,21 @@ angular.module('angularApp')
         {
            if(confirm("确认要结束本次报名？"))
            {
+//               //把当前begin_activity的活动名称存入到last_begin_activity进行记录(在发送短信时会进行判断)
+//               var the_last_begin_activity=
+//               {
+//                   "activity_name": (JSON.parse(localStorage.getItem('begin_activity'))).activity_name
+//               }
+//               localStorage.setItem("last_begin_activity",JSON.stringify( the_last_begin_activity));
+
+
+               //删除begin_activity
                localStorage.removeItem("begin_activity");
+//             console.log(JSON.parse(localStorage.getItem('begin_activity')).activity_status);
                $scope.this_activity_status="end";
+
+               //设置当前状态
+               write_current_status("end");
            }
        }
 
