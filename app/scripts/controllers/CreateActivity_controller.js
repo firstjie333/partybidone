@@ -40,7 +40,12 @@ angular.module('angularApp')
             { id=localStorage.getItem('activities')==null ? 0 : (JSON.parse(localStorage.getItem('activities'))).length;
             }
             //存储活动信息到localstorage：activities
-            var activity = {"activity_name":$scope.activity_name, "activity_id": id+1,"activity_createtime":""};
+            var activity =
+               {"activity_name":$scope.activity_name,
+                   "activity_id": id+1,
+                   "activity_messages":"[]"
+//                   "activity_createtime":"",
+               };
             acts.push(activity);
             localStorage.setItem("activities",JSON.stringify(acts));
         }

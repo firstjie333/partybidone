@@ -10,15 +10,17 @@ angular.module('angularApp')
 //     $scope.activity_status=localStorage.getItem('messages')==null ? 'end':'begin';
 //页面初始化
         //1)显示具体活动名称  :$scope.details_name
+        //4)显示信息列表： 调用ShowMessage()
         //2)判断开始/结束按钮的状态   :$scope.activity_status
         //3)判断是否使能开始/结束按钮   :
-        //4)显示信息列表： 调用ShowMessage()
+
 //getname:显示具体活动名称
-        $scope.details_name=JSON.parse(localStorage.getItem('details')).details_name || "";
+        $scope.details_name=localStorage.getItem('details')==null ? "" : JSON.parse(localStorage.getItem('details')).details_name;
 //判断开始结束按钮的状态：
 // 开始可用:活动状态为end
 // 结束可用:活动状态为begin
 // 开始不可用:活动状态为disabled
+        ShowMessage();
         if(localStorage.getItem('begin_activity')==null)
         {
             $scope.this_activity_status='end';
@@ -55,13 +57,24 @@ angular.module('angularApp')
             }
         }
 
+
 //ShowMessage():显示信息 （自定义）
         function ShowMessage()
         {
-            var this_messages=JSON.parse(localStorage.getItem('messages')) || [];
-            var count=JSON.parse(localStorage.getItem('messages')).length;
+            var this_messages=[];
+            var local_messages=JSON.parse(localStorage.getItem('messages')) || [];
+            for(var i=0;i<local_messages.length;i++)
+            {
+                if(local_messages[i].activity_name==$scope.details_name)
+                {
+                    this_messages.push(local_messages[i]);
+                }
+            }
+            $scope.Messages=this_messages.reverse();
+            var count=this_messages.length;
+//            var count=$scope.Messages.length;
             $scope.message_count="("+count+"人)";
-            $scope.Messages=(JSON.parse(localStorage.getItem('messages'))).reverse();
+
         }
 
 //SaveMessage():存储信息  （自定义）
@@ -72,7 +85,7 @@ angular.module('angularApp')
             {
                 "user_name": "张三",
                 "user_phone": "13699440780",
-                "activity_name":$scope.this_activity_status
+                "activity_name":$scope.details_name
             };
             mess.push(message);
             localStorage.setItem("messages",JSON.stringify(mess));

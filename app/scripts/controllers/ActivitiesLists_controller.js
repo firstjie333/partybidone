@@ -38,7 +38,7 @@ angular.module('angularApp')
 
 
 //将localstorage里面的activities数组取出，reverse（）方法实现倒叙输出
-        $scope.Activities=(JSON.parse(localStorage.getItem('activities'))).reverse();
+        $scope.Activities=localStorage.getItem('activities')==null ? [] : (JSON.parse(localStorage.getItem('activities'))).reverse();
 
 
 //ng-click：对应details函数
