@@ -26,20 +26,13 @@ var native_accessor = {
 //4)回复短信
     process_received_message: function (json_message)
     {
-       if(verifiedMessage(json_message))
+       if(verifiedMessage(json_message))//验证短信格式
        {
-           sendMessage(json_message);//里面包含了保存信息的函数,和刷新页面函数
-
+           if(!verifiedIsRepeat(json_message))//验证号码是否重复，活动是否重复
+           {
+               sendMessage(json_message);//发送短信（包含保存信息的函数和刷新页面函数）
+           }
        }
-
-//        //如果活动尚未开始，或者活动状态错误，
-//        if (!Message.check_apply_status() && Message.check_apply_detail_status())
-//        {
-//            native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍候。');
-//            //console.log('活动尚未开始，请稍候。');
-//            return;
-//        }
-//        //console.log('aaaaaaaaaaaaaaa');
     }
 };
 
@@ -52,7 +45,7 @@ var native_accessor = {
  case "end_activitycreate":活动正常结束后，用户又创建了新的活动——（创建页面确认创建按钮）
  ********/
 
-//write_current_status(current_status);当前状态写入
+//write_current_status(current_status)：当前状态写入
         function write_current_status(current_status)
         {
             localStorage.removeItem("current_status");
@@ -68,10 +61,32 @@ var native_accessor = {
 // verifiedMessage(json_message):验证信息,判断短信信息是否符合格式要求,返回true/false
         function  verifiedMessage(json_message)
         {
-            var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格
-            return  message.substr(0,2).toUpperCase()=="BM";
+            var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格,其中\s：space表示空格，或者写为" "
+//            console.log(message.substr(0,2).toUpperCase() =="BM");测试
+            return  message.substr(0,2).toUpperCase() =="BM"; //提取出前两个字符
         }
-//
+
+
+//verifiedIsRepeat():要求是保留重名不重号码的信息，直接考虑电话号码是否重复和报名活动是否重复
+//返回false：1)没有报名信息2)有报名信息但号码不重复3)有报名信息号码重复但报名活动不重复
+//返回true：有报名信息   号码重复(可能是一个数组)    报名活动重复
+        function verifiedIsRepeat(json_message)
+        {
+            var is_repeat=false;
+            var user_phone=json_message.messages[0].phone;
+            var begin_activity_name=localStorage.getItem("begin_activity")==null ? "" : (JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
+            if(localStorage.getItem("messages")!=null)
+              {
+                  var messages=JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
+                  for(var i=0;i<messages.length;i++)
+                  {
+                      is_repeat=(messages[i].user_phone==user_phone) && (messages[i].activity_name==begin_activity_name);
+//                      console.log('同一活动能重复报名');//测试
+                  }
+              }
+            console.log(is_repeat);
+            return is_repeat;
+        }
 
 //SaveMessage(json_message):存储信息
         function saveMessage(json_message)
@@ -124,18 +139,18 @@ var native_accessor = {
 
 //refreshPage():刷新正在进行的活动页面
 //需要在成功接受并存储短信后调用，即
-function refreshPage()
-{
-    //getElementById(页面id号)，返回一个对象，这里应该是返回一个页面对象
-    var page_refresh = document.getElementById('id_refresh_page');
-    if (page_refresh) {
-        var scope = angular.element(page_refresh).scope();
-        scope.$apply(function ()
+        function refreshPage()
         {
-            scope.thisPageRefresh();
-        })
-    }
-};
+            //getElementById(页面id号)，返回一个对象，这里应该是返回一个页面对象
+            var page_refresh = document.getElementById('id_refresh_page');
+            if (page_refresh) {
+                var scope = angular.element(page_refresh).scope();
+                scope.$apply(function ()
+                {
+                    scope.thisPageRefresh();
+                })
+            }
+        }
 
 
 
