@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('angularApp')
-    .controller('ActivitiesRegisterController', function ($scope,$location) {
+    .controller('ActivitiesRegisterController', function ($scope,$location,$filter) {
 
 // 活动状态
 //     $scope.activity_status=localStorage.getItem('messages')==null ? 'end':'begin';
@@ -14,7 +14,7 @@ angular.module('angularApp')
         //3)判断是否使能开始/结束按钮   :
         //4)显示信息列表： 调用ShowMessage()
 //getname:显示具体活动名称
-        $scope.details_name=JSON.parse(localStorage.getItem('details')).details_name;
+        $scope.details_name=JSON.parse(localStorage.getItem('details')).details_name || "";
 //判断开始结束按钮的状态：
 // 开始可用:活动状态为end
 // 结束可用:活动状态为begin
@@ -58,7 +58,7 @@ angular.module('angularApp')
 //ShowMessage():显示信息 （自定义）
         function ShowMessage()
         {
-            
+            var this_messages=JSON.parse(localStorage.getItem('messages')) || [];
             var count=JSON.parse(localStorage.getItem('messages')).length;
             $scope.message_count="("+count+"人)";
             $scope.Messages=(JSON.parse(localStorage.getItem('messages'))).reverse();
@@ -70,9 +70,9 @@ angular.module('angularApp')
             var mess = JSON.parse(localStorage.getItem('messages') || '[]');
             var message =
             {
-                "user_name": "username",
-                "user_phone": "userphone",
-                "activity_name":"activityname"
+                "user_name": "张三",
+                "user_phone": "13699440780",
+                "activity_name":$scope.this_activity_status
             };
             mess.push(message);
             localStorage.setItem("messages",JSON.stringify(mess));
