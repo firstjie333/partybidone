@@ -4,10 +4,12 @@
     <div class="header-left">
        <button class="side-slide-trigger btn-style btn-4" ng-click="go_back()" >返回</button>
     </div>
-    <div class="header-right"  ng-switch="activity_status" >
-        <button ng-switch-when="begin" class="btn-style btn-4 " ng-click="go_end()" >结束</button>
-        <button ng-switch-when="end"  class="btn-style btn-4 " ng-click="go_begin()" ng-disabled="disabled()">开始</button>
-        <button ng-switch-default  class="btn-style btn-4"  ng-click="go_begin()" ng-disabled="disabled()">开始</button>
+    <div class="header-right"  ng-switch="this_activity_status"  ng-disabled="isDisabled()">
+        <!--三种状态：开始可用  活动状态为end，开始不可用   活动状态为disabled，结束可用   活动状态为begin-->
+        <button ng-switch-when="begin" class="btn-style btn-4 " ng-click="go_end()">结束</button>
+        <button ng-switch-when="disabled"  class="btn-style btn-4 " ng-click="go_begin()" ng-disabled="true" style="background: #dcdcdc">开始</button>
+        <button ng-switch-when="end"  class="btn-style btn-4 " ng-click="go_begin()" >开始</button>
+        <!--<button ng-switch-default  class="btn-style btn-4"  ng-click="go_begin()" >开始</button>-->
     </div>
     <!--go_back()--> <!--go_start():这里没有要求开始按钮的跳转-->
 
@@ -19,7 +21,7 @@
 
 <div class="wrapper">
     <ul class="list-style-2" >
-        <h2 align="center">{{getname.details_name}}</h2>
+        <h2 align="center">{{details_name}}</h2>
         <li ng-repeat="message in Messages">
             <br/>
             <p class="header-left">{{message.user_name}}</p>

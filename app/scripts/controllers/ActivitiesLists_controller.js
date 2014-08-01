@@ -56,11 +56,14 @@ angular.module('angularApp')
             //注意还应该传入一些参数信息哦,利用localstorage
         }
 
-//
+//showYellow()：正在报名的活动，背景颜色变为黄色
         $scope.showYellow=function(activity_name)
         {
-            if((JSON.parse(localStorage.getItem('begin_activity'))).activity_name==activity_name)
+           if(localStorage.getItem('begin_activity')!=null&&(JSON.parse(localStorage.getItem('begin_activity'))).activity_name==activity_name)
                 {return "begin-yellow";}
+           else
+                {return null;}
+
         }
 
 
