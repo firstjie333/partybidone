@@ -12,6 +12,7 @@ var native_accessor = {
     //相当一个间接桥梁
     receive_message: function (json_message)
     {
+//        console.log(typeof this.process_received_message);
         if (typeof this.process_received_message === 'function')
         {
             this.process_received_message(json_message);
@@ -27,11 +28,9 @@ var native_accessor = {
     {
        if(verifiedMessage(json_message))
        {
-           saveMessage(json_message);
-           sendMessage();
 
+           sendMessage(json_message);//里面包含了保存信息的函数
        }
-//        var  now_begin_activity=getActivityStatus();
 
 //        //如果活动尚未开始，或者活动状态错误，
 //        if (!Message.check_apply_status() && Message.check_apply_detail_status())
@@ -69,41 +68,45 @@ var native_accessor = {
 // verifiedMessage(json_message):验证信息：判断短信信息是否符合格式要求,返回true，false
         function  verifiedMessage(json_message)
         {
-            var message = json_message.messages[0].message.replace(/\s/g, "");//去掉空格
+            var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格
             return  message.substr(0,2).toUpperCase()=="BM";
         }
 
 //SaveMessage():存储信息
         function saveMessage(json_message)
         {
-                var username =(json_message.messages[0].message.replace(/\s/g, "")).substr(2);
-                var userphone=json_message.messages[0].phone;
-                var activityname=(JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
+            if(json_message!=null)
+            {
+                var user_name =(json_message.messages[0].message.replace(/\s/g, "")).substr(2);
+                var user_phone=json_message.messages[0].phone;
+                var activity_name=localStorage.getItem("begin_activity")==null ? "":(JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
 
                 var mess = JSON.parse(localStorage.getItem('messages') || '[]');
-                var message =
+                var message=
                 {
-                    "user_name": username,
-                    "user_phone": userphone,
-                    "activity_name": activityname
+                    "user_name": user_name,
+                    "user_phone": user_phone,
+                    "activity_name": activity_name
                 };
                 mess.push(message);
                 localStorage.setItem("messages", JSON.stringify(mess));
-                return true;
+            }
         }
 
 //sendMessage(json_message):回复短信
-        function  sendMessage()
+        function  sendMessage(json_message)
         {
                 switch(read_current_status())
                 {
                     case "begin":
                         // native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         console.log('恭喜，报名成功！');
+                        saveMessage(json_message);
                         break;
                     case "begin_activitycreate":
                         // native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         console.log('恭喜，报名成功！');
+                        saveMessage(json_message);
                         break;
                     case "end":
                         // native_accessor.send_sms(json_message.messages[0].phone,'Sorry，活动报名已结束!');
@@ -120,9 +123,9 @@ var native_accessor = {
 //真正执行的函数
    function notify_message_received(message_json)
       {
-        //console.log(JSON.stringify(message_json));
-        //console.log(message_json.messages[0].message);
-
+        console.log(JSON.stringify(message_json));
+        console.log(message_json.messages[0].message);
+        console.log(message_json.messages[0].phone);
         //JSON.stringify(message_json);
         //alert(JSON.stringify(message_json.messages));
         native_accessor.receive_message(message_json);
