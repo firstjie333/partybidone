@@ -7,7 +7,7 @@ angular.module('angularApp')
     .controller('ActivitiesRegisterController', function ($scope,$location,$filter) {
 
 
-//页面初始化
+/******页面初始化*******/
         //1)显示具体活动名称  :$scope.details_name
         //4)显示信息列表： 调用showMessage()
         //2)判断开始/结束按钮的状态   :$scope.activity_status
@@ -21,7 +21,6 @@ angular.module('angularApp')
         // 开始可用:活动状态为end
         // 结束可用:活动状态为begin
         // 开始不可用:活动状态为disabled
-
         //如果不存在正在进行的活动信息，状态为   开始可用end
         if(localStorage.getItem('begin_activity')==null)
         {
@@ -40,7 +39,7 @@ angular.module('angularApp')
                 $scope.this_activity_status='disabled';
             }
         }
-
+/*****************初始化结束***********************/
 
 //isDisabled():使能开始/结束按钮
         //方法是：将当前页面的活动名称  与   localstorage里面的begin_activity的活动名称做对比
@@ -136,7 +135,6 @@ angular.module('angularApp')
         {
            if(confirm("确认要结束本次报名？"))
            {
-
                localStorage.removeItem("begin_activity");
                $scope.this_activity_status="end";
 
@@ -145,6 +143,7 @@ angular.module('angularApp')
            }
        }
 
+//当前页面刷新，只用刷新信息列表和报名人数即可，直接调用 showMessage()函数
        $scope.thisPageRefresh=function()
        {
            showMessage();

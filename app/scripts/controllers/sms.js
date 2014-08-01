@@ -84,7 +84,7 @@ var native_accessor = {
 //                      console.log('同一活动能重复报名');//测试
                   }
               }
-            console.log(is_repeat);
+//            console.log(is_repeat);//测试
             return is_repeat;
         }
 
