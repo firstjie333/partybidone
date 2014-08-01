@@ -6,31 +6,35 @@
 angular.module('angularApp')
     .controller('ActivitiesRegisterController', function ($scope,$location,$filter) {
 
-// 活动状态
-//     $scope.activity_status=localStorage.getItem('messages')==null ? 'end':'begin';
+
 //页面初始化
         //1)显示具体活动名称  :$scope.details_name
-        //4)显示信息列表： 调用ShowMessage()
+        //4)显示信息列表： 调用showMessage()
         //2)判断开始/结束按钮的状态   :$scope.activity_status
-        //3)判断是否使能开始/结束按钮   :
+        //3)判断是否使能开始/结束按钮:
 
-//getname:显示具体活动名称
+//details_name:显示具体活动名称
         $scope.details_name=localStorage.getItem('details')==null ? "" : JSON.parse(localStorage.getItem('details')).details_name;
-//判断开始结束按钮的状态：
-// 开始可用:活动状态为end
-// 结束可用:活动状态为begin
-// 开始不可用:活动状态为disabled
-        ShowMessage();
+//showMessage():显示当前页面活动列表
+        showMessage();
+//判断开始/结束按钮的状态：
+        // 开始可用:活动状态为end
+        // 结束可用:活动状态为begin
+        // 开始不可用:活动状态为disabled
+
+        //如果不存在正在进行的活动信息，状态为   开始可用end
         if(localStorage.getItem('begin_activity')==null)
         {
             $scope.this_activity_status='end';
         }
         else
         {
+            //如果存在活动信息，并且正在进行的活动名称，等于当前页面的活动名称，状态为    结束可用begin
             if((JSON.parse(localStorage.getItem('begin_activity'))).activity_name==$scope.details_name)
             {
                 $scope.this_activity_status='begin';
             }
+            //否则  开始不可用disabled
             else
             {
                 $scope.this_activity_status='disabled';
@@ -59,7 +63,7 @@ angular.module('angularApp')
 
 
 //ShowMessage():显示信息 （自定义）
-        function ShowMessage()
+        function showMessage()
         {
             var this_messages=[];
             var local_messages=JSON.parse(localStorage.getItem('messages')) || [];
@@ -77,24 +81,24 @@ angular.module('angularApp')
 
         }
 
-//SaveMessage():存储信息  （自定义）
-        function SaveMessage()
-        {
-            var mess = JSON.parse(localStorage.getItem('messages') || '[]');
-            var message =
-            {
-                "user_name": "张三",
-                "user_phone": "13699440780",
-                "activity_name":$scope.details_name
-            };
-            mess.push(message);
-            localStorage.setItem("messages",JSON.stringify(mess));
-        }
+//SaveMessage():存储信息  （自定义）——————写在sms.js函数里了，因为需要获得相应的信息
+//        function SaveMessage()
+//        {
+//            var mess = JSON.parse(localStorage.getItem('messages') || '[]');
+//            var message =
+//            {
+//                "user_name": "张三",
+//                "user_phone": "13699440780",
+//                "activity_name":$scope.details_name
+//            };
+//            mess.push(message);
+//            localStorage.setItem("messages",JSON.stringify(mess));
+//        }
 
 
 
 //go_back()返回按钮单击事件
-    $scope.go_back=function()
+        $scope.go_back=function()
         {
             $location.path('/ActivitiesLists');
         }
@@ -110,15 +114,14 @@ angular.module('angularApp')
         $scope.this_activity_status="begin";
         //存储开始报名的活动名称
         var the_begin_activity=
-              {"activity_name":$scope.details_name,
-               "activity_status":$scope.this_activity_status
+              {"activity_name":$scope.details_name
               };
         localStorage.removeItem("begin_activity");
         localStorage.setItem("begin_activity",JSON.stringify(the_begin_activity));
-        //存储短信报名信息
+        //存储短信报名信息（定义在sms.js里面）
         saveMessage();
         //显示成功报名列表信息
-        ShowMessage();
+        showMessage();
         //设置当前状态
         write_current_status("begin");
 
@@ -133,17 +136,8 @@ angular.module('angularApp')
         {
            if(confirm("确认要结束本次报名？"))
            {
-//               //把当前begin_activity的活动名称存入到last_begin_activity进行记录(在发送短信时会进行判断)
-//               var the_last_begin_activity=
-//               {
-//                   "activity_name": (JSON.parse(localStorage.getItem('begin_activity'))).activity_name
-//               }
-//               localStorage.setItem("last_begin_activity",JSON.stringify( the_last_begin_activity));
 
-
-               //删除begin_activity
                localStorage.removeItem("begin_activity");
-//             console.log(JSON.parse(localStorage.getItem('begin_activity')).activity_status);
                $scope.this_activity_status="end";
 
                //设置当前状态
@@ -151,6 +145,10 @@ angular.module('angularApp')
            }
        }
 
+       $scope.thisPageRefresh=function()
+       {
+           showMessage();
+       }
 
 
 

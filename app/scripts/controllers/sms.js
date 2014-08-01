@@ -28,8 +28,8 @@ var native_accessor = {
     {
        if(verifiedMessage(json_message))
        {
+           sendMessage(json_message);//里面包含了保存信息的函数,和刷新页面函数
 
-           sendMessage(json_message);//里面包含了保存信息的函数
        }
 
 //        //如果活动尚未开始，或者活动状态错误，
@@ -52,27 +52,28 @@ var native_accessor = {
  case "end_activitycreate":活动正常结束后，用户又创建了新的活动——（创建页面确认创建按钮）
  ********/
 
-//当前状态写入write_current_status
+//write_current_status(current_status);当前状态写入
         function write_current_status(current_status)
         {
             localStorage.removeItem("current_status");
             localStorage.setItem("current_status",current_status);
         }
-        //当前状态读出read_current_status
+//read_current_status():当前状态读出
         function read_current_status()
         {
             var current_status=localStorage.getItem("current_status");
             return  current_status;
         }
 
-// verifiedMessage(json_message):验证信息：判断短信信息是否符合格式要求,返回true，false
+// verifiedMessage(json_message):验证信息,判断短信信息是否符合格式要求,返回true/false
         function  verifiedMessage(json_message)
         {
             var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格
             return  message.substr(0,2).toUpperCase()=="BM";
         }
+//
 
-//SaveMessage():存储信息
+//SaveMessage(json_message):存储信息
         function saveMessage(json_message)
         {
             if(json_message!=null)
@@ -102,11 +103,13 @@ var native_accessor = {
                         // native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         console.log('恭喜，报名成功！');
                         saveMessage(json_message);
+                        refreshPage();
                         break;
                     case "begin_activitycreate":
                         // native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         console.log('恭喜，报名成功！');
                         saveMessage(json_message);
+                        refreshPage();
                         break;
                     case "end":
                         // native_accessor.send_sms(json_message.messages[0].phone,'Sorry，活动报名已结束!');
@@ -119,8 +122,30 @@ var native_accessor = {
                 }
         }
 
+//refreshPage():刷新正在进行的活动页面
+//需要在成功接受并存储短信后调用，即
+function refreshPage()
+{
+    //getElementById(页面id号)，返回一个对象，这里应该是返回一个页面对象
+    var page_refresh = document.getElementById('id_refresh_page');
+    if (page_refresh) {
+        var scope = angular.element(page_refresh).scope();
+        scope.$apply(function ()
+        {
+            scope.thisPageRefresh();
+        })
+    }
+};
 
-//真正执行的函数
+
+
+
+
+
+
+
+
+//notify_message_received(message_json):真正执行的发短信的函数
    function notify_message_received(message_json)
       {
         console.log(JSON.stringify(message_json));
