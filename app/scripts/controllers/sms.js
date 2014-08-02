@@ -63,7 +63,7 @@ var native_accessor = {
         function  verifiedMessage(json_message)
         {
             var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格,其中\s：space表示空格，或者写为" "
-//          console.log(message.substr(0,2).toUpperCase() =="BM");测试
+//          console.log(message.substr(0,2).toUpperCase() =="BM");//测试
             //如果短信本身就小于两个字符
             var is_right=(message.length>=2) && (message.substr(0,2).toUpperCase() == "BM")
 //            console.log(is_right);//测试
@@ -76,24 +76,36 @@ var native_accessor = {
 //返回true：有报名信息   号码重复(可能是一个数组)    报名活动重复
         function verifiedIsRepeat(json_message)
         {
-            var is_repeat=false;
             var user_phone=json_message.messages[0].phone;
             var begin_activity_name=localStorage.getItem("begin_activity")==null ? "" : (JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
+
             if(localStorage.getItem("messages")!=null)
-              {
-                  var messages=JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
-                  for(var i=0;i<messages.length;i++)
+            {
+                var messages=JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
+                for (var i = 0; i < messages.length; i++)
                   {
-                      if((messages[i].user_phone==user_phone) && (messages[i].activity_name==begin_activity_name))
-                      {
-                          is_repeat=true;
-                          return is_repeat;
-                      }
-//                      console.log('同一活动能重复报名');//测试
+                     return  (messages[i].user_phone == user_phone) && (messages[i].activity_name == begin_activity_name);
                   }
-              }
-//            console.log(is_repeat);//测试
-            return is_repeat;
+            }
+            return false;
+//            var is_repeat=false;
+//            var user_phone=json_message.messages[0].phone;
+//            var begin_activity_name=localStorage.getItem("begin_activity")==null ? "" : (JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
+//            if(localStorage.getItem("messages")!=null)
+//              {
+//                  var messages=JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
+//                  for(var i=0;i<messages.length;i++)
+//                  {
+//                      if((messages[i].user_phone==user_phone) && (messages[i].activity_name==begin_activity_name))
+//                      {
+//                          is_repeat=true;
+//                      }
+//                    console.log('同一活动能重复报名');//测试
+//                  }
+//              }
+////            console.log(is_repeat);//测试
+//            return is_repeat;
+//            console.log(is_repeat);
         }
 
 //SaveMessage(json_message):存储信息
@@ -105,7 +117,7 @@ var native_accessor = {
                 var user_phone=json_message.messages[0].phone;
                 var activity_name=localStorage.getItem("begin_activity")==null ? "":(JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
 
-                var mess = JSON.parse(localStorage.getItem('messages') || '[]');
+                var mess = JSON.parse(localStorage.getItem("messages") || '[]');
                 var message=
                 {
                     "user_name": user_name,
