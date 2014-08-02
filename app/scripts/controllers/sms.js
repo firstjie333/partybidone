@@ -6,7 +6,7 @@ var native_accessor = {
     send_sms: function (phone, message) {
 
         native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
-        //console.log('flag');
+//         console.log('flag');
 //        console.log(phone, message);
     },
 
@@ -158,13 +158,7 @@ var native_accessor = {
 //notify_message_received(message_json):真正执行的发短信的函数
      function notify_message_received(message_json)
       {
-//        console.log(JSON.stringify(message_json));
-//        console.log(message_json.messages[0].message);
-//        console.log(message_json.messages[0].phone);
-//        JSON.stringify(message_json);
-//        alert(JSON.stringify(message_json.messages));
         native_accessor.receive_message(message_json);
-        //phone_number=message_json.messages[0].phone;
        }
 
 //By  fengjie：
