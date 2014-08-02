@@ -113,7 +113,8 @@ angular.module('angularApp')
         $scope.this_activity_status="begin";
         //存储开始报名的活动名称
         var the_begin_activity=
-              {"activity_name":$scope.details_name
+              {
+                  "activity_name":$scope.details_name
               };
         localStorage.removeItem("begin_activity");
         localStorage.setItem("begin_activity",JSON.stringify(the_begin_activity));
@@ -123,8 +124,6 @@ angular.module('angularApp')
         showMessage();
         //设置当前状态
         write_current_status("begin");
-
-
     }
 
 //go_end():结束活动按钮
@@ -137,7 +136,6 @@ angular.module('angularApp')
            {
                localStorage.removeItem("begin_activity");
                $scope.this_activity_status="end";
-
                //设置当前状态
                write_current_status("end");
            }
