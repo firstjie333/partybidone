@@ -30,7 +30,11 @@ angular.module('angularApp')
             {
                 for (var i = 0; i <activities.length; i++)
                 {
-                    is_activity_repeat = activities[i].activity_name ==$scope.activity_name;
+                    if(activities[i].activity_name ==$scope.activity_name)
+                    {
+                        is_activity_repeat=true;
+                        return is_activity_repeat;
+                    }
                 }
              }
             return is_activity_repeat;
