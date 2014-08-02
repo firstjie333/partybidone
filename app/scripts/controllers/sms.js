@@ -1,21 +1,18 @@
 //notify_message_received({"messages":[{"create_date":"Tue Jan 15 15:28:44 格林尼治标准时间+0800 2013","message":"bm仝键","phone":"18733171780"}]})
 //notify_message_received({"messages":[{"create_date":"Tue Jan 15 15:28:44 格林尼治标准时间+0800 2013","message":"jj308","phone":"18733171780"}]})
-
+'use strict';
 
 var native_accessor = {
-    send_sms: function (phone, message)
-    {
-         native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
-//       console.log(phone, message);//模拟
-//       console.log('flag');
+    send_sms: function (phone, message) {
+
+        native_access.send_sms({"receivers":[{"name":'name', "phone":phone}]}, {"message_content":message});
+        //console.log('flag');
+//        console.log(phone, message);
     },
 
     //相当一个间接桥梁
-    receive_message: function (json_message)
-    {
-//        console.log(typeof this.process_received_message);
-        if (typeof this.process_received_message === 'function')
-        {
+    receive_message: function (json_message) {
+        if (typeof this.process_received_message === 'function') {
             this.process_received_message(json_message);
         }
     },
@@ -62,12 +59,14 @@ var native_accessor = {
 // verifiedMessage(json_message):验证信息,判断短信信息是否符合格式要求,返回true/false
         function  verifiedMessage(json_message)
         {
-            var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格,其中\s：space表示空格，或者写为" "
-//          console.log(message.substr(0,2).toUpperCase() =="BM");//测试
-            //如果短信本身就小于两个字符
-            var is_right=(message.length>=2) && (message.substr(0,2).toUpperCase() == "BM")
-//            console.log(is_right);//测试
-            return  is_right ; //提取出前两个字符
+            if(json_message!=null)
+            {
+                var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格,其中\s：space表示空格，或者写为" "
+                return   (message.length>=2) && (message.substr(0,2).toUpperCase() == "BM");
+//                console.log((message.length>=2) && (message.substr(0,2).toUpperCase() == "BM"));
+            }
+            else
+            { return false;}
         }
 
 
@@ -76,38 +75,21 @@ var native_accessor = {
 //返回true：有报名信息   号码重复(可能是一个数组)    报名活动重复
         function verifiedIsRepeat(json_message)
         {
-            var user_phone=json_message.messages[0].phone;
-            var begin_activity_name=localStorage.getItem("begin_activity")==null ? "" : (JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
-
-            if(localStorage.getItem("messages")!=null)
+            var user_phone = json_message.messages[0].phone;
+            var begin_activity_name = localStorage.getItem("begin_activity") == null ? "" : (JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
+            if (localStorage.getItem("messages") != null)
             {
-                var messages=JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
+                var messages = JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
                 for (var i = 0; i < messages.length; i++)
-                  {
-                     return  (messages[i].user_phone == user_phone) && (messages[i].activity_name == begin_activity_name);
-                  }
+                {
+                    if((messages[i].user_phone == user_phone) && (messages[i].activity_name == begin_activity_name))
+                    {
+                        return true;
+                    }
+                }
             }
             return false;
-//            var is_repeat=false;
-//            var user_phone=json_message.messages[0].phone;
-//            var begin_activity_name=localStorage.getItem("begin_activity")==null ? "" : (JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
-//            if(localStorage.getItem("messages")!=null)
-//              {
-//                  var messages=JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
-//                  for(var i=0;i<messages.length;i++)
-//                  {
-//                      if((messages[i].user_phone==user_phone) && (messages[i].activity_name==begin_activity_name))
-//                      {
-//                          is_repeat=true;
-//                      }
-//                    console.log('同一活动能重复报名');//测试
-//                  }
-//              }
-////            console.log(is_repeat);//测试
-//            return is_repeat;
-//            console.log(is_repeat);
         }
-
 //SaveMessage(json_message):存储信息
         function saveMessage(json_message)
         {
@@ -135,16 +117,16 @@ var native_accessor = {
                 switch(read_current_status())
                 {
                     case "begin":
-                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
 //                        console.log('恭喜，报名成功！');
                         saveMessage(json_message);
                         refreshPage();
+                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         break;
                     case "begin_activitycreate":
-                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
 //                        console.log('恭喜，报名成功！');
                         saveMessage(json_message);
                         refreshPage();
+                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         break;
                     case "end":
                         native_accessor.send_sms(json_message.messages[0].phone,'Sorry，活动报名已结束!');
@@ -152,7 +134,7 @@ var native_accessor = {
                         break;
                     case "end_activitycreate":
                         native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍后！');
-//                        console.log('活动尚未开始，请稍后！');
+//                      console.log('活动尚未开始，请稍后！');
                         break;
                 }
         }
@@ -173,15 +155,8 @@ var native_accessor = {
         }
 
 
-
-
-
-
-
-
-
 //notify_message_received(message_json):真正执行的发短信的函数
-   function notify_message_received(message_json)
+     function notify_message_received(message_json)
       {
 //        console.log(JSON.stringify(message_json));
 //        console.log(message_json.messages[0].message);
