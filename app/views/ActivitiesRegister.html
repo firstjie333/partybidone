@@ -1,5 +1,5 @@
 <header>
-    活动报名{{message_count}}
+    活动报名({{message_count}}人)
     <title>活动报名</title>
     <div class="header-left">
        <button class="side-slide-trigger btn-style btn-4" ng-click="go_back()" >返回</button>
@@ -11,7 +11,6 @@
         <button ng-switch-when="end"  class="btn-style btn-4 " ng-click="go_begin()" >开始</button>
         <!--<button ng-switch-default  class="btn-style btn-4"  ng-click="go_begin()" >开始</button>-->
     </div>
-    <!--go_back()--> <!--go_start():这里没有要求开始按钮的跳转-->
 
 
 </header>
@@ -26,7 +25,6 @@
             <br/>
             <p class="header-left">{{message.user_name}}</p>
             <p class="header-right">{{message.user_phone}}</p>
-            <br/>
         </li>
     </ul>
 </div>

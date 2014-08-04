@@ -6,8 +6,7 @@ angular.module('angularApp')
 
 
 /****************初始化*******/
-        $scope.showBackButton=(JSON.parse(localStorage.getItem('activities')))==null ? 'false':'true';
-
+        $scope.showBackButton= (!isKeyNULL('activities'));
 //go—back():返回按钮的ng-click
         $scope.go_back= function ()
             {
@@ -18,7 +17,7 @@ angular.module('angularApp')
         function isActivityRepeat()
         {
             var is_activity_repeat=false;
-            var activities = JSON.parse(localStorage.getItem('activities') || '[]');
+            var activities =getLocalObject('activities');
             //下面将判断是否出现名字重复：
             // 重复则显示提示信息，并返回；
             // 不重复则保存对象activity到数组acts里面，并把acts数组存入到localstorage里面
@@ -42,29 +41,20 @@ angular.module('angularApp')
 //"activity_messages":创建时间（暂时保留，以后没有用处可以删除）
         function saveActivity()
         {
-            var acts = JSON.parse(localStorage.getItem('activities') || '[]');
-            var id;
-            if(acts!=null)
-            { id=localStorage.getItem('activities')==null ? 0 : (JSON.parse(localStorage.getItem('activities'))).length;
-            }
-            //存储活动信息到localstorage：activities
-            var activity =
-               {"activity_name":$scope.activity_name,
-                 "activity_id": id+1
-//               "activity_messages":"[]"
-//               "activity_createtime":"",
-               };
-            acts.push(activity);
-            localStorage.setItem("activities",JSON.stringify(acts));
+
+            var id=isKeyNULL('activities') ? 1: getLocalObject('activities').length+1;
+            var activity=new Activity($scope.activity_name,id);
+            console.log(activity.activity_createtime);
+            var activities=getLocalObject('activities');
+            activities.push(activity);
+            setLocalObject('activities',activities);
         }
 
 //saveDetails():传递活动信息参数到localstorage：details
         function saveDetails()
         {
-
             var detail={"details_name":$scope.activity_name};
-            localStorage.removeItem("details");
-            localStorage.setItem("details",JSON.stringify(detail));
+            setLocalString('details',detail);
             $location.path('/ActivitiesRegister');
         }
 
@@ -85,7 +75,7 @@ angular.module('angularApp')
                 saveDetails();
 
                 //设置当前状态（说明详见sms.js）
-                if(localStorage.getItem('begin_activity')==null)
+                if(isKeyNULL('begin_activity'))
                 { write_current_status("end_activitycreate");}
                 else
                 { write_current_status("begin_activitycreate");}

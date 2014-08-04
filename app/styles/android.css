@@ -545,7 +545,7 @@ footer {
 	font-size: 18px;
 	color: #808080;
 	padding:0;
-	background-color: #fff; 
+	background-color: #fff;
 	display: block;
 	border: 1px solid #bebebe;
 	border-top: 1px solid #dcdcdc;
@@ -555,7 +555,7 @@ footer {
 .list-style-1 li a {
 	display: block;
 	text-decoration: none;
-	padding:15px; 
+	padding:15px;
 }
 
 .list-style-1 li a i.icon-angle-right {
@@ -583,7 +583,7 @@ footer {
 }
 
 .list-style-1 li.list-style-menu {
-	padding:16px 15px; 
+	padding:16px 15px;
 	color: #333;
 	font-size: 16px;
 }
@@ -610,12 +610,12 @@ footer {
 
 
 .list-style-2 li {
-
-	padding:0 10px;
+    line-height: 40px;
+	padding:10 10px;
 	border-bottom:1px solid #ccc;
 	border-top:1px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
-	font-size:16px;
+	font-size:24px;
 	position: relative;
 }
 
@@ -637,7 +637,7 @@ footer {
 .list-style-2 i .btn-2 {
 	line-height: 28px;
 	font-size: 14px;
-	padding:0px 10px; 
+	padding:0px 10px;
 }
 
 .list-style-2 h3 {
@@ -663,7 +663,7 @@ footer {
 	font-size: 18px;
 	color: #808080;
 	padding:0;
-	background-color: #3b3b3b; 
+	background-color: #3b3b3b;
 	display: block;
 	border-top: 1px solid #444444;
 	border-bottom: 1px solid #2e2e2e;
