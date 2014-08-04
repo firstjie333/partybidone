@@ -122,8 +122,9 @@ angular.module('angularApp')
            {
                localStorage.removeItem("begin_activity");
                $scope.this_activity_status="end";
-               //设置当前状态
-               write_current_status("end");
+               write_current_status("end");   //设置当前状态
+
+               $location.path('/BidLists');
            }
        }
 

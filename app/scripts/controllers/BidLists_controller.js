@@ -14,7 +14,7 @@ angular.module('angularApp')
         }
         $scope.go_begin_bidDetails=function()
         {
-
+              $location.path('/BidDetails');
         }
 
     });
