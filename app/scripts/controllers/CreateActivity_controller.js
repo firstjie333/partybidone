@@ -6,11 +6,7 @@ angular.module('angularApp')
 
 
 /****************初始化*******/
-//是否显示返回按钮
-//是否显示重名错误提示
         $scope.showBackButton=(JSON.parse(localStorage.getItem('activities')))==null ? 'false':'true';
-//        $scope.error=false;
-/*****************初始化结束***********************/
 
 //go—back():返回按钮的ng-click
         $scope.go_back= function ()

@@ -1,0 +1,23 @@
+<header>
+    竞价{{id}}
+    <title>竞价{{id}}</title>
+    <div class="header-left">
+        <button class="btn-style btn-4" ng_click="go_back_activityLists()" >返回</button>
+    </div>
+    <div class="header-right">
+        <button class="btn-style btn-4" ng_click="go_begin_bidDetails()" >结束</button>
+    </div>
+</header>
+
+
+
+<div class="wrapper">
+    <ul class="list-style-2" >
+        <li ng-repeat="bid in Bids" ng-click="go_bidDetails(activity.activity_name)" ng-model="activity" class={{showYellow(activity.activity_name)}}>
+
+
+
+        </li>
+    </ul>
+</div>
+

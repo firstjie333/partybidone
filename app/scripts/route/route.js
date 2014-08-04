@@ -34,6 +34,14 @@ angular
       .when('/CreateActivity', {
          templateUrl: 'views/CreateActivity.html',
          controller: 'CreateActivityController'
+        })
+      .when('/BidLists', {
+         templateUrl: 'views/BidLists.html',
+         controller: 'BidListsController'
+        })
+      .when('/BidDetails', {
+         templateUrl: 'views/BidDetails.html',
+         controller: 'BidDetailsController'
       })
         .otherwise({
         redirectTo: '/'

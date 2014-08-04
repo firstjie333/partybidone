@@ -3,16 +3,6 @@
  */
 'use strict';
 
-/**
- * @ngdoc function
- * @name angularApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the angularApp
- */
-
-
-
 
 angular.module('angularApp')
     .controller('ActivitiesListsController', function ($scope,$location) {
@@ -28,17 +18,13 @@ angular.module('angularApp')
 //将localstorage里面的activities数组取出，reverse（）方法实现倒叙输出
         $scope.Activities=localStorage.getItem('activities')==null ? [] : (JSON.parse(localStorage.getItem('activities'))).reverse();
 
-/*****************初始化结束***********************/
-
+/************绑定的函数*****************/
 
  //go_create()：确认创建按钮
         $scope.go_create=function()
         {
             $location.path('/CreateActivity');
         }
-
-
-
 
 //details(act_name):点击具体列表转到活动报名页面的ng-click
        //function：details

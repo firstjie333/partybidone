@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('angularApp')
-    .controller('ActivitiesRegisterController', function ($scope,$location,$filter) {
+    .controller('ActivitiesRegisterController', function ($scope,$location) {
 
 
 /******页面初始化*******/
@@ -61,7 +61,7 @@ angular.module('angularApp')
         }
 
 
-//ShowMessage():显示信息 （自定义）
+//showMessage():显示信息 （自定义）
         function showMessage()
         {
             var this_messages=[];
@@ -79,20 +79,6 @@ angular.module('angularApp')
             $scope.message_count="("+count+"人)";
 
         }
-
-//SaveMessage():存储信息  （自定义）——————写在sms.js函数里了，因为需要获得相应的信息
-//        function SaveMessage()
-//        {
-//            var mess = JSON.parse(localStorage.getItem('messages') || '[]');
-//            var message =
-//            {
-//                "user_name": "张三",
-//                "user_phone": "13699440780",
-//                "activity_name":$scope.details_name
-//            };
-//            mess.push(message);
-//            localStorage.setItem("messages",JSON.stringify(mess));
-//        }
 
 
 
@@ -146,7 +132,5 @@ angular.module('angularApp')
        {
            showMessage();
        }
-
-
 
     });
