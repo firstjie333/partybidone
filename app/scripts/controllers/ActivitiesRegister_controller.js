@@ -8,13 +8,13 @@ angular.module('angularApp')
 
 
 /******页面初始化*******/
-        //1)显示具体活动名称  :$scope.details_name
+        //1)显示具体活动名称  :$scope.details_activityname
         //4)显示信息列表： 调用showMessage()
         //2)判断开始/结束按钮的状态   :$scope.activity_status
         //3)判断是否使能开始/结束按钮:
 
 
-        $scope.details_name=isKeyNULL('details')?"":getLocalString('details').details_name;
+        $scope.register_activityname=isKeyNULL('details_activity')?"":getLocalString('details_activity').details_activityname;
         showMessage();
 //判断开始/结束按钮的状态：
         // 开始可用:活动状态为end  结束可用:活动状态为begin   开始不可用:活动状态为disabled
@@ -25,7 +25,7 @@ angular.module('angularApp')
         else
         {
             //如果存在活动信息，并且正在进行的活动名称，等于当前页面的活动名称，状态为    结束可用begin
-            if(getLocalString('begin_activity').activity_name==$scope.details_name)
+            if(getLocalString('begin_activity').activity_name==$scope.register_activityname)
             {
                 $scope.this_activity_status='begin';
             }
@@ -43,7 +43,7 @@ angular.module('angularApp')
             var local_messages=getLocalObject('messages');
             for(var i=0;i<local_messages.length;i++)
             {
-                if(local_messages[i].activity_name==$scope.details_name)
+                if(local_messages[i].activity_name==$scope.register_activityname)
                 {
                     this_messages.push(local_messages[i]);
                 }
@@ -69,11 +69,11 @@ angular.module('angularApp')
     {
         $scope.this_activity_status="begin";//开启报名：将状态信息变为begin
         var the_begin_activity=
-              {   "activity_name":$scope.details_name   };//存储开始报名的活动名称
+              {   "activity_name":$scope.register_activityname   };//存储开始报名的活动名称
         setLocalString('begin_activity',the_begin_activity);
         saveMessage(); //存储短信报名信息（定义在sms.js里面）
         showMessage();//显示成功报名列表信息
-        write_current_status("begin"); //设置当前状态
+        writeCurrentActivityStatus("begin"); //设置当前状态
     }
 
 //go_end():结束活动按钮
@@ -83,7 +83,7 @@ angular.module('angularApp')
            {
                localStorage.removeItem("begin_activity");
                $scope.this_activity_status="end";
-               write_current_status("end");   //设置当前状态
+               writeCurrentActivityStatus("end");   //设置当前状态
                $location.path('/BidLists');//跳转到竞价列表页面
            }
        }

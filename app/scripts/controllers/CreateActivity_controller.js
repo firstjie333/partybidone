@@ -50,11 +50,11 @@ angular.module('angularApp')
             setLocalObject('activities',activities);
         }
 
-//saveDetails():传递活动信息参数到localstorage：details
-        function saveDetails()
+//saveRegisterDetails():传递活动信息参数到localstorage
+        function saveRegisterDetails()
         {
-            var detail={"details_name":$scope.activity_name};
-            setLocalString('details',detail);
+            var detail={"details_activityname":$scope.activity_name};
+            setLocalString('details_activity',detail);
             $location.path('/ActivitiesRegister');
         }
 
@@ -72,13 +72,13 @@ angular.module('angularApp')
             else
             {
                 saveActivity();
-                saveDetails();
+                saveRegisterDetails();
 
                 //设置当前状态（说明详见sms.js）
                 if(isKeyNULL('begin_activity'))
-                { write_current_status("end_activitycreate");}
+                   { writeCurrentActivityStatus("end_activitycreate");}
                 else
-                { write_current_status("begin_activitycreate");}
+                   { writeCurrentActivityStatus("begin_activitycreate");}
             }
 
         }

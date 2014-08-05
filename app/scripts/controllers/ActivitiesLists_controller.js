@@ -1,6 +1,4 @@
-/**
- * Created by fengjie on 14-7-22.
- */
+/*** Created by fengjie on 14-7-22.*/
 'use strict';
 
 
@@ -29,12 +27,12 @@ angular.module('angularApp')
             $location.path('/CreateActivity');
         }
 
-//details(act_name):点击具体列表转到活动报名页面的
+//go_register(act_name):点击具体列表转到活动报名页面的
        //input：name（即html页面对应的所选活动名称）
-        $scope.details=function(act_name)
+        $scope.go_register=function(act_name)
         {
-            var detail={"details_name":act_name};//设置value
-            setLocalString("details",detail);//调用函数
+            var detail={"details_activityname":act_name};//设置value
+            setLocalString("details_activity",detail);//调用函数
             $location.path('/ActivitiesRegister');//跳转创建活动页面
         }
 
