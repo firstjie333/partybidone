@@ -35,7 +35,7 @@
 //saveBid（）:存储竞价
             function saveBid(activity_name,bid_id)
             {
-                var bid=new Activity(activity_name,bid_id);
+                var bid=new Bid(activity_name,bid_id);
                 setLocal('bids',bid);
             }
 

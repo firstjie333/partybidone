@@ -7,7 +7,7 @@
      function Activity(activity_name,activity_id)
        {
            this.activity_name=activity_name;
-           this.activity_id=activity_id;
+//           this.activity_id=activity_id;
 //           this.activity_createtime=Date();
 //           this.activity_status=activity_status;
        };

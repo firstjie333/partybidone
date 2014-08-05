@@ -5,7 +5,7 @@
     </div>
     <div class="header-right" ng-switch="the_button_status">
         <button ng-switch-when="show_begin"      class="btn-style btn-4" ng_click="create_bidDetails()">开始</button>
-        <button ng-switch-when="disabled_begin"  class="btn-style btn-4" ng-disabled="true">开始</button>
+        <button ng-switch-when="disabled_begin"  class="btn-style btn-4" ng-disabled="true"  style="background: #dcdcdc">开始</button>
     </div>
 </header>
 
@@ -15,6 +15,8 @@
         <li ng-repeat="bid in Bids"
             ng-click="go_bidDetails(bid.activity_name,bid.bid_id)"
             class={{showYellow(bid.activity_name,bid.bid_id)}}>
+            <br/>
+            <span class="header-left " >竞价{{bid.bid_id}}</span>
         </li>
     </ul>
 </div>
