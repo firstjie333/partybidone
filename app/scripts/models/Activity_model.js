@@ -26,7 +26,6 @@
  ***********************************************************************/
 
 
-
 //write_current_status(current_status)：当前活动状态写入
             function writeCurrentActivityStatus(current_activity_status)
             {
@@ -41,4 +40,28 @@
                 return  current_activity_status;
             }
 
+
+/**********************当前正在进行的活动对象*****************
+ current_activity=
+ {
+    "activity_name":
+ }
+ * ****************/
+
+        function CurrentActivity(activity_name)
+        {
+            this.activity_name=activity_name;
+        }
+
+/************************当前页面所属的活动名称对象***********
+details_activity=
+ {
+ "details_activityname":
+ }
+ * *************************/
+
+        function DetailsActivity(activity_name)
+        {
+            this.activity_name=activity_name;
+        }
 

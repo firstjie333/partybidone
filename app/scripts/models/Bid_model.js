@@ -40,17 +40,6 @@
            }
         }
 
-/**获得竞价id号(id=已有竞价个数+1）*/
-     function saveBidMessage(user_name,user_phone)
-           {
-              //查看当前状态
-               var message=
-               {
-                  "user_name":user_name,
-                  "user_phone":user_phone
-               }
-
-           }
 
 /***************************竞价状态***********************************/
 /********说明：定义了一个localStorage:current_bid_status来存储当前的状态
@@ -71,3 +60,29 @@
         }
 
 
+/************************当前正在进行的竞价对象*******
+ * current_bid=
+ {
+   "bid_id":
+   "activity_name":
+ }
+ * **************************/
+        function CurrentBid(activity_name,bid_id)
+        {
+            this.activity_name=activity_name;
+            this.bid_id=bid_id;
+        }
+
+
+/************************当前页面所属的竞价名称***********
+ details_bid=
+ {
+ "details_activityname":
+ "detais_bidID":
+ }
+ * *************************/
+        function DetailsBid(activity_name,bid_id)
+        {
+            this.activity_name=activity_name;
+            this.bid_id=bid_id;
+        }
