@@ -32,7 +32,7 @@
         function getLocalString(key)
         {
             var oneLocalStorage;
-            oneLocalStorage=isKeyNULL(key) ? "":JSON.parse(localStorage.getItem(key));
+            oneLocalStorage=isKeyNULL(key) ? "":localStorage.getItem(key);
             return oneLocalStorage;
         }
 /**根据key，存入字符串*/

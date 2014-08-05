@@ -7,9 +7,13 @@
 angular.module('angularApp')
     .controller('BidDetailsController', function ($scope,$location) {
 
-//
+/********初始化***********************/
         $scope.the_bid_id=getLocal('details_bid').bid_id;
 //        $scope.the_bid_count=
+        buttonStatus();
+
+
+
 
          $scope.go_back_bidsLists=function()
          {
@@ -20,9 +24,17 @@ angular.module('angularApp')
         {
             if(confirm('确认要结束本次竞价吗？'))
             {
-                  //结束按钮使能
+                writeCurrentBidStatus("end_bid");
+
             }
         }
-
+        function  buttonStatus()
+        {
+            switch(readCurrentBidStatus())
+            {
+                case "begin_bid": $scope.the_button_status="end_show";break;
+                case "end_bid":   $scope.the_button_status="end_disabled";break;
+            }
+        }
 
     });

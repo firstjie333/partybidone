@@ -642,14 +642,14 @@ footer {
 
 .list-style-2 h3 {
 	font-size: 16px;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	margin: 3px 0 2px 0;
 	padding: 0;
 }
 /*修改*/
 .list-style-2 p {
-	font-size: 15px;
-    text-index:5em;
+  	font-size: 16px;
+    /*text-index:5em;*/
 	color:#000000;
 	margin: 0 0 5px 0;
 }

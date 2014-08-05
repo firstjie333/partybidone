@@ -4,18 +4,22 @@
     <div class="header-left">
         <button class="btn-style btn-4" ng_click="go_back_bidsLists()" >返回</button>
     </div>
-    <div class="header-right">
-        <button class="btn-style btn-4" ng_click="end_bidDetails()" >结束</button>
+    <div class="header-right" ng-switch="the_button_status">
+        <button ng-switch-when="show_end"      class="btn-style btn-4 " ng-click="end_bidDetails()">结束</button>
+        <button ng-switch-when="disabled_end"  class="btn-style btn-4 "  ng-disabled="true" style="background: #dcdcdc">结束</button>
     </div>
 </header>
 
 
 
 <div class="wrapper">
-    <ul class="list-style-2" >
-        <li ng-repeat="bid in Bids" ng-click="go_bidDetails(activity.activity_name)" ng-model="activity" class={{showYellow(activity.activity_name)}}>
-
-
+    <ul class="list-style-3" >
+        <!--<li ng-repeat="bid_details in Bids_details"-->
+            <!--ng-click="go_bidDetails(activity.activity_name)">-->
+            <br/>
+            <span class="header-left " >message_id   user_name </span>
+            <p class="header-left" > user_phone </p>
+        <!--</li>-->
 
         </li>
     </ul>

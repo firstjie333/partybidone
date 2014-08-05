@@ -8,7 +8,7 @@
        {
            this.activity_name=activity_name;
            this.activity_id=activity_id;
-           this.activity_createtime=Date();
+//           this.activity_createtime=Date();
 //           this.activity_status=activity_status;
        };
 
@@ -42,14 +42,15 @@
 //write_current_status(current_status)：当前活动状态写入
             function writeCurrentActivityStatus(current_activity_status)
             {
-                setLocalString('current_activity_status',current_activity_status);
+                localStorage.removeItem("current_activity_status");
+                localStorage.setItem("current_activity_status",current_activity_status);
             }
 
 
 //read_current_status():当前活动状态读出
             function readCurrentActivityStatus()
             {
-                var current_activity_status=getLocalString('current_activity_status');
+                var current_activity_status=localStorage.getItem('current_activity_status');
                 return  current_activity_status;
             }
 

@@ -66,10 +66,11 @@ angular.module('angularApp')
 //开始报名按钮
     $scope.begin_register=function()
     {
-        saveCurrentActivity($scope.details_activityname);
-
-
         writeCurrentActivityStatus('begin'); //活动状态变为begin
+        saveCurrentActivity($scope.details_activityname);
+        buttonStatus();
+
+
         saveRegisterMessage(); //存储短信报名信息（定义在sms.js里面）
         showRegisterMessages();//显示成功报名列表信息
     }

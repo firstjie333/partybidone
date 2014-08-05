@@ -49,12 +49,12 @@ angular.module('angularApp')
         function saveDetailsBid(activity_name,bid_id)
         {
             var details_bid=new DetailsBid(activity_name,bid_id);
-            setLocal('details_bid',details_bid);
+            setLocalString('details_bid',details_bid);
         }
         function saveCurrentBid(activity_name,bid_id)
         {
             var details_bid=new CurrentBid(activity_name,bid_id)
-            setLocal('current_bid',details_bid);
+            setLocalString('current_bid',details_bid);
         }
 
 

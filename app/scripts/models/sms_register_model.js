@@ -57,13 +57,13 @@ var native_accessor = {
         function verifiedIsRepeat(json_message)
         {
             var user_phone = json_message.messages[0].phone;
-            var begin_activity_name = localStorage.getItem("begin_activity") == null ? "" : (JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
-            if (localStorage.getItem("messages") != null)
+            var activity_name =isKeyNULL('current_activity')?"":getLocal('current_activity').activity_name;
+            if (!isKeyNULL('messages'))
             {
-                var messages = JSON.parse(localStorage.getItem("messages"));//取出的所有信息对象放数组里便于循环遍历
+                var messages =getLocal('messages');;//取出的所有信息对象放数组里便于循环遍历
                 for (var i = 0; i < messages.length; i++)
                 {
-                    if((messages[i].user_phone == user_phone) && (messages[i].activity_name == begin_activity_name))
+                    if((messages[i].user_phone == user_phone) && (messages[i].activity_name == activity_name))
                     {
                         return true;
                     }
@@ -78,9 +78,8 @@ var native_accessor = {
             {
                 var user_name =(json_message.messages[0].message.replace(/\s/g, "")).substr(2);
                 var user_phone=json_message.messages[0].phone;
-                var activity_name=localStorage.getItem("begin_activity")==null ? "":(JSON.parse(localStorage.getItem("begin_activity"))).activity_name;
-
-                var mess = JSON.parse(localStorage.getItem("messages") || '[]');
+                var activity_name=isKeyNULL('current_activity')?"":getLocal('current_activity').activity_name;
+                var mess =getLocal('messages');
                 var message=
                 {
                     "user_name": user_name,
@@ -95,7 +94,7 @@ var native_accessor = {
 //sendMessage(json_message):回复短信
         function  sendMessage(json_message)
         {
-                switch(read_current_status())
+                switch(readCurrentActivityStatus())
                 {
                     case "begin":
 //                        console.log('恭喜，报名成功！');
@@ -116,6 +115,8 @@ var native_accessor = {
                     case "end_activitycreate":
                         native_accessor.send_sms(json_message.messages[0].phone,'活动尚未开始，请稍后！');
 //                      console.log('活动尚未开始，请稍后！');
+                    case "end_bidcreate":
+
                         break;
                 }
         }
