@@ -14,6 +14,19 @@
 
 
 
+//saveActivity（）:存储活动  localStorage取名为:activities
+//对象属性：
+// "activity_name":活动名称
+// "activity_id": 活动(自增长类型)
+//"activity_messages":创建时间（暂时保留，以后没有用处可以删除）
+        function saveActivity(activity_name)
+        {
+            var id=isKeyNULL('activities') ? 1: getLocal('activities').length+1;
+            var activity=new Activity(activity_name,id);
+            setLocal('activities',activity);
+        }
+
+
 
 /***************************活动状态***********************************/
 /********说明：定义了一个localStorage:current_activity_status来存储当前的状态
@@ -41,7 +54,7 @@
             }
 
 
-/**********************当前正在进行的活动对象*****************
+/**********************当前正在进行的活动对象(key='current_activity')*****************
  current_activity=
  {
     "activity_name":
@@ -53,7 +66,7 @@
             this.activity_name=activity_name;
         }
 
-/************************当前页面所属的活动名称对象***********
+/************************当前页面所属的活动名称对象(key='details_activity')***********
 details_activity=
  {
  "details_activityname":

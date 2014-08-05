@@ -8,82 +8,84 @@ angular.module('angularApp')
 
 
 /******页面初始化*******/
-        //1)显示具体活动名称  :$scope.details_activityname
-        //4)显示信息列表： 调用showMessage()
-        //2)判断开始/结束按钮的状态   :$scope.activity_status
-        //3)判断是否使能开始/结束按钮:
+        //1)显示具体活动名称
+        //4)显示信息列表：
+        //2)判断开始/结束按钮的状态
+        $scope.details_activityname=isKeyNULL('details_activity')?"":getLocal('details_activity').activity_name;
+        showRegisterMessages();
+        buttonStatus();
 
 
-        $scope.register_activityname=isKeyNULL('details_activity')?"":getLocalString('details_activity').details_activityname;
-        showMessage();
-//判断开始/结束按钮的状态：
-        // 开始可用:活动状态为end  结束可用:活动状态为begin   开始不可用:活动状态为disabled
-        if(isKeyNULL('begin_activity'))
-            {
-                $scope.this_activity_status='end';
-            }
-        else
+//判断并显示开始结束按钮
+        function buttonStatus()
         {
-            //如果存在活动信息，并且正在进行的活动名称，等于当前页面的活动名称，状态为    结束可用begin
-            if(getLocalString('begin_activity').activity_name==$scope.register_activityname)
-            {
-                $scope.this_activity_status='begin';
-            }
-            //否则  开始不可用disabled
+            if(isKeyNULL('current_activity_status'))
+            {   $scope.the_button_status = 'show_begin';}
             else
             {
-                $scope.this_activity_status='disabled';
+                if (getLocalString('current_activity_status') == 'end' || getLocalString('current_activity_status') == 'end_activitycreate')
+                {   $scope.the_button_status = 'show_begin';}
+                else if (getLocalString('current_activity_status') == 'end_bidcreate')
+                {   $scope.the_button_status = 'disabled_begin';}
+                else
+                {
+
+                    if (getLocal('details_activity').activity_name == getLocal('current_activity').activity_name)
+                    {   $scope.the_button_status = 'show_end'; }
+                    else
+                    {   $scope.the_button_status = 'disabled_begin'; }
+                }
             }
+
         }
-/*****************绑定的函数***********************/
-//showMessage():显示信息 （自定义）
-        function showMessage()
+
+//显示已报名的信息列表和人数
+        function showRegisterMessages()
         {
             var this_messages=[];
-            var local_messages=getLocalObject('messages');
+            var local_messages=getLocal('messages');
             for(var i=0;i<local_messages.length;i++)
             {
-                if(local_messages[i].activity_name==$scope.register_activityname)
+                if(local_messages[i].activity_name==$scope.details_activityname)
                 {
                     this_messages.push(local_messages[i]);
                 }
             }
             $scope.Messages=this_messages.reverse();
-            var count=this_messages.length;
-            $scope.message_count=count;
+            $scope.Messages_count=this_messages.length;
         }
 
 
-
-//go_back()返回按钮单击事件
-        $scope.go_back=function()
+/*****************绑定的函数***********************/
+//返回活动列表按钮
+        $scope.go_activityLists=function()
         {
             $location.path('/ActivitiesLists');
         }
 
-//go_begin():开始报名按钮
-    //开启报名：将状态信息变为begin
-    //存储当前这个活动的信息到localstorage：取名为begin_activity
-    //显示成功报名的报名列表（信息的倒叙显示的）ShowMessage（）
-    $scope.go_begin=function()
+//开始报名按钮
+    $scope.begin_register=function()
     {
-        $scope.this_activity_status="begin";//开启报名：将状态信息变为begin
-        var the_begin_activity=
-              {   "activity_name":$scope.register_activityname   };//存储开始报名的活动名称
-        setLocalString('begin_activity',the_begin_activity);
-        saveMessage(); //存储短信报名信息（定义在sms.js里面）
-        showMessage();//显示成功报名列表信息
-        writeCurrentActivityStatus("begin"); //设置当前状态
-    }
+        saveCurrentActivity($scope.details_activityname);
 
-//go_end():结束活动按钮
-        $scope.go_end=function()
+
+        writeCurrentActivityStatus('begin'); //活动状态变为begin
+        saveRegisterMessage(); //存储短信报名信息（定义在sms.js里面）
+        showRegisterMessages();//显示成功报名列表信息
+    }
+        function saveCurrentActivity(activity_name)
+        {
+            var current_activity=new CurrentActivity(activity_name);
+            setLocalString('current_activity',current_activity);//存储当前正在进行的活动
+        }
+
+//结束报名按钮
+        $scope.end_register=function()
         {
            if(confirm("确认要结束本次报名？"))
            {
-               localStorage.removeItem("begin_activity");
-               $scope.this_activity_status="end";
                writeCurrentActivityStatus("end");   //设置当前状态
+               localStorage.removeItem('current_activity');
                $location.path('/BidLists');//跳转到竞价列表页面
            }
        }
@@ -91,7 +93,16 @@ angular.module('angularApp')
 //当前页面刷新，只用刷新信息列表和报名人数即可，直接调用 showMessage()函数
        $scope.thisPageRefresh=function()
        {
-           showMessage();
+           showRegisterMessages();
        }
 
+
+//竞价按钮
+        $scope.go_bidLists=function()
+        {
+            $location.path('/BidLists');//跳转到竞价列表页面
+        }
     });
+
+
+

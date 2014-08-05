@@ -7,7 +7,10 @@
 angular.module('angularApp')
     .controller('BidListsController', function ($scope,$location) {
 
-        $scope.Bids=getLocalObject('bids').reverse();
+/************初始化***************/
+        $scope.Bids=isKeyNULL('bids')?[]:getLocal('bids').reverse();
+
+
 
 
         $scope.go_back_activityLists=function()
@@ -18,19 +21,15 @@ angular.module('angularApp')
         $scope.create_bidDetails=function()
         {
 
-
-            var activity_name=getLocalObject('details_activity').details_activityname;//获得当前活动名称
-            var bid_id=getBidID('bids',activity_name);//获得要存储的id号
-            //存储竞价信息
-            saveBid(activity_name,bid_id);
-            //存储详细竞价页面的
-            saveDetailsBid(activity_name,bid_id);
+            var activity_name=getLocal('details_activity').activity_name;//获得当前活动名称
+            var bid_id=lengthOfActivityBids(activity_name)+1;
+            saveBid(activity_name,bid_id);//存储竞价
+            saveDetailsBid(activity_name,bid_id);//存储跳转的竞价信息
+            saveCurrentBid(activity_name,bid_id);//存储当前竞价信息
             //活动状态变为end_bidcreate
             writeCurrentActivityStatus('end_bidcreate');
             //竞价状态变为begin_bid
             writeCurrentBidStatus('begin_bid');
-
-
             //竞价列表页面的开始按钮状态变为灰色不可点击
             //竞价列表和活动列表的底色为黄色
 
@@ -39,20 +38,39 @@ angular.module('angularApp')
              $location.path('/BidDetails');
         }
 
-        function  saveBid(activity_name,bid_id)
-            {
-                var bid=new Bids(activity_name,bid_id);//创建一个竞价活动
-                setLocalObject('bids',bid);//存储一个竞价活动
-            }
+        $scope.go_bidDetails=function(activity_name,bid_id)
+        {
+            saveDetailsBid(activity_name,bid_id);//存储跳转的竞价信息
+            $location.path('/BidDetails');
+        }
+
+
 
         function saveDetailsBid(activity_name,bid_id)
         {
-            var detail_bid=
-            {
-                "details_activityname":activity_name,
-                "details_bidid":bid_id
-            };
-            setLocalString('details_bid',detail_bid);
+            var details_bid=new DetailsBid(activity_name,bid_id);
+            setLocal('details_bid',details_bid);
+        }
+        function saveCurrentBid(activity_name,bid_id)
+        {
+            var details_bid=new CurrentBid(activity_name,bid_id)
+            setLocal('current_bid',details_bid);
+        }
+
+
+//是否显示黄色背景色
+        $scope.showYellow=function(activity_name,bid_id)
+        {
+            if(!isKeyNULL('current_bid')&&(getLocal('current_bid').activity_name) == activity_name  &&  (getLocal('current_bid').bid_id) == bid_id)
+               {return "begin-yellow";}
+            else
+               {return null; }
+        }
+
+
+        $scope.go_register=function()
+        {
+            $location.path('/ActivitiesRegister');
         }
 
     });

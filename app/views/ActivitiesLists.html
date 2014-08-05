@@ -10,7 +10,6 @@
     <ul class="list-style-2" >
         <li ng-repeat="activity in Activities"
             ng-click="go_register(activity.activity_name)"
-            ng-model="activity"   
             class={{showYellow(activity.activity_name)}}>
             <br/>
             <span class="header-left " >{{activity.activity_name}}</span>

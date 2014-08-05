@@ -10,18 +10,17 @@
 /**根据key取出localStorage内容，并转化为对象格式*/
         function getLocal(key)
         {
-            var oneLocalStorage;
-            oneLocalStorage=isKeyNULL(key) ? []:JSON.parse(localStorage.getItem(key));
+            var oneLocalStorage=isKeyNULL(key) ? []:JSON.parse(localStorage.getItem(key));
             return oneLocalStorage;
         }
 
 /**根据key，value存入localStorage，存入数组对象*/
         function setLocal(key,value)
         {
-            var  oneLocalStorage;
-            oneLocalStorage=isKeyNULL(key)?[]:JSON.parse(localStorage.getItem(key));
-            oneLocalStorage.push(value);
-            localStorage.setItem(key,JSON.stringify(value));
+            var  arr;
+            arr=isKeyNULL(key)?[]:JSON.parse(localStorage.getItem(key));
+            arr.push(value);
+            localStorage.setItem(key,JSON.stringify(arr));
         }
 
 
@@ -33,14 +32,14 @@
         function getLocalString(key)
         {
             var oneLocalStorage;
-            oneLocalStorage=isKeyNULL(key) ? "":localStorage.getItem(key);
+            oneLocalStorage=isKeyNULL(key) ? "":JSON.parse(localStorage.getItem(key));
             return oneLocalStorage;
         }
 /**根据key，存入字符串*/
         function setLocalString(key,value)
         {
-            LocalStorage.remove(key);
-            LocalStorage.setItem(key,value);
+              localStorage.removeItem(key);
+              localStorage.setItem(key,JSON.stringify(value));
         }
 
 

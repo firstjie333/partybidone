@@ -13,8 +13,7 @@ angular.module('angularApp')
         }
 
         var acts=getLocal("activities");
-        $scope.Activities=(acts==[])?acts:acts.reverse();
-
+        $scope.Activities=acts.reverse();
 
 
 /************绑定的函数*****************/
@@ -26,23 +25,23 @@ angular.module('angularApp')
 
 
 //跳转活动报名页面
-        $scope.go_register=function(activity_name)
+        $scope.go_register=function(name)
         {
-            var detail=new DetailsActivity(activity_name);//创建当前活动报名页面的对象
-            setLocalString("details_activity",detail);//存储当前活动报名页面的对象
+            var detail=new DetailsActivity(name);//创建当前活动报名页面的对象
+            setLocalString('details_activity',detail);
             $location.path('/ActivitiesRegister');//跳转创建活动报名页面
         }
 
 //是否显示黄色背景色
         $scope.showYellow=function(activity_name)
         {
-            if ((!isKeyNULL('begin_activity')) && ((getLocalString('begin_activity').activity_name) == activity_name))
+            if (  !isKeyNULL('current_activity')   &&   (getLocal('current_activity').activity_name) == activity_name)
                  { return "begin-yellow";}
+            else if(isKeyNULL('current_activity')  &&  !isKeyNULL('current_bid')  && (getLocal('current_bid').activity_name) == activity_name )
+                 {  return "begin-yellow";}
             else
                  { return null; }
         }
-
-
     });
 
 

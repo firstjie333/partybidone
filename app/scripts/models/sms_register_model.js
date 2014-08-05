@@ -72,7 +72,7 @@ var native_accessor = {
             return false;
         }
 //SaveMessage(json_message):存储信息
-        function saveMessage(json_message)
+        function saveRegisterMessage(json_message)
         {
             if(json_message!=null)
             {
@@ -99,13 +99,13 @@ var native_accessor = {
                 {
                     case "begin":
 //                        console.log('恭喜，报名成功！');
-                        saveMessage(json_message);
+                        saveRegisterMessage(json_message);
                         refreshPage();
                         native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         break;
                     case "begin_activitycreate":
 //                        console.log('恭喜，报名成功！');
-                        saveMessage(json_message);
+                        saveRegisterMessage(json_message);
                         refreshPage();
                         native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                         break;

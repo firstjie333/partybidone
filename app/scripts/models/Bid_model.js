@@ -6,39 +6,42 @@
 
 /***************竞价对象************************/
 //只需要知道是当前哪一个活动即可，而id号会自动调用函数计算
-     function  Bids(activity_name)
+     function  Bid(activity_name,bid_id)
         {
            this.activity_name=activity_name;
-           this.bid_ID= this.lengthOfActivityBids+1;
+           this.bid_id= bid_id;
            this.bid_messages=[];
-
-           //所有竞价个数
-           this.lengthOfAllBids=lengthOfAllBids;
-           function lengthOfAllBids()
-           {
-               isKeyNULL('bids')?0:getLocal('bids').length;
-           }
-           //当前活动对应的竞价个数
-           this.lengthOfActivityBids=lengthOfActivityBids;
-           function  lengthOfActivityBids()
-           {
-               var id=0;
-               if(isKeyNULL(key))
-               {
-                   return id;
-               }
-               else
-               {
-                   var bids=getLocal(key);
-                   for(var i=0;i<bids.length;i++)
-                   {
-                       if(bids[i]==activity_name)
-                       {id=id+1;}
-                   }
-                   return id;
-               }
-           }
         }
+
+        function  lengthOfActivityBids(activity_name)
+        {
+            var id=0;
+            if(isKeyNULL('bids'))
+            {
+                return id;
+            }
+            else
+            {
+                var bids=getLocal('bids');
+                for(var i=0;i<bids.length;i++)
+                {
+                    if(bids[i]==activity_name)
+                    {id=id+1;}
+                }
+                return id;
+            }
+        }
+
+//saveBid（）:存储竞价
+            function saveBid(activity_name,bid_id)
+            {
+                var bid=new Activity(activity_name,bid_id);
+                setLocal('bids',bid);
+            }
+
+
+
+
 
 
 /***************************竞价状态***********************************/
@@ -60,7 +63,7 @@
         }
 
 
-/************************当前正在进行的竞价对象*******
+/************************当前正在进行的竞价对象(key='current_bid')*******
  * current_bid=
  {
    "bid_id":
@@ -74,7 +77,7 @@
         }
 
 
-/************************当前页面所属的竞价名称***********
+/************************当前页面所属的竞价名称(key='details_bid')***********
  details_bid=
  {
  "details_activityname":

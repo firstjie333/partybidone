@@ -1,9 +1,9 @@
 <header>
     创建活动
-    <title>创建活动</title>
     <div class="header-left">
-       <button ng-show='showBackButton'  class="side-slide-trigger btn-style btn-4" ng-click="go_back()">返回</button>
-       <!--show--><!--go_back()-->
+       <button  class="side-slide-trigger btn-style btn-4"
+                ng-show='showBackButton'
+                ng-click="go_activitiesLists()">返回</button>
     </div>
 </header>
 
@@ -11,12 +11,12 @@
     <br/>
     <p class="p-new">请输入活动名称</p>
     <input  class='well full' ng-model='activity_name' type='text'/>
-    <!--name-->
     <br/>
     <br/>
     <p>{{show}}</p>
-    <button ng-disabled='!activity_name' class='btn btn-4'  ng-click='confirm()' >确认</button>
-    <p ng-show='error' style='color:red'>*该活动名称已经被使用，请重新输入</p>
-    <!--confirm()--><!--error-->
+    <button  class='btn btn-4'
+             ng-disabled='!activity_name'
+             ng-click='confirmCreate()' >确认</button>
+    <p ng-show='show_error' style='color:red'>*该活动名称已被使用，请重新输入</p>
 </div>
 

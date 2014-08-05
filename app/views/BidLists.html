@@ -1,6 +1,5 @@
 <header>
     竞价列表
-    <title>竞价</title>
     <div class="header-left">
         <button class="btn-style btn-4" ng_click="go_back_activityLists()" >返回</button>
     </div>
@@ -12,14 +11,16 @@
 
 <div class="wrapper">
     <ul class="list-style-2" >
-        <li ng-repeat="bid in Bids" ng-click="go_bidDetails(activity.activity_name)" ng-model="activity" class={{showYellow(activity.activity_name)}}>
+        <li ng-repeat="bid in Bids"
+            ng-click="go_bidDetails(bid.activity_name,bid.bid_id)"
+            class={{showYellow(bid.activity_name,bid.bid_id)}}>
         </li>
     </ul>
 </div>
 
 <footer>
     <ul class="footer-nav footer-nav-2tabs">
-        <li ><button class="btn-style btn-4 " style="width: 100%"></i>  报名</button></li>
+        <li ><button class="btn-style btn-4 " style="width: 100%"  ng-click="go_register()"></i>  报名</button></li>
         <li ><button class="btn-style btn-4 " style="width: 100%"></i>  竞价</button></li>
     </ul>
 </footer>

@@ -7,6 +7,10 @@
 angular.module('angularApp')
     .controller('BidDetailsController', function ($scope,$location) {
 
+//
+        $scope.the_bid_id=getLocal('details_bid').bid_id;
+//        $scope.the_bid_count=
+
          $scope.go_back_bidsLists=function()
          {
              $location.path('/BidLists');
