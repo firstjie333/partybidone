@@ -9,7 +9,16 @@ angular.module('angularApp')
 
 /************初始化***************/
         $scope.Bids=isKeyNULL('bids')?[]:getLocal('bids').reverse();
+        buttonStatus();
 
+        function buttonStatus()
+        {
+            if(isKeyNULL('current_bid_status'))
+               {   $scope.the_button_status = 'show_begin';}
+            else
+               {   $scope.the_button_status = 'disabled_begin';}
+
+        }
 
 
 

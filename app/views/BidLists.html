@@ -3,8 +3,9 @@
     <div class="header-left">
         <button class="btn-style btn-4" ng_click="go_back_activityLists()" >返回</button>
     </div>
-    <div class="header-right">
-        <button class="btn-style btn-4" ng_click="create_bidDetails()">开始</button>
+    <div class="header-right" ng-switch="the_button_status">
+        <button ng-switch-when="show_begin"      class="btn-style btn-4" ng_click="create_bidDetails()">开始</button>
+        <button ng-switch-when="disabled_begin"  class="btn-style btn-4" ng-disabled="true">开始</button>
     </div>
 </header>
 
