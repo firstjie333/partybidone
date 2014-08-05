@@ -1,22 +1,22 @@
 <header>
     活动列表
-    <title>活动列表</title>
     <div class="header-right">
-        <button class="btn-style btn-4" ng_click="go_create()" >创建活动</button>
+        <button class="btn-style btn-4" ng_click="createActivity()" >创建活动</button>
     </div>
-    <!--go_create()-->
 </header>
 
 
 <div class="wrapper">
     <ul class="list-style-2" >
-        <li ng-repeat="activity in Activities" ng-click="go_register(activity.activity_name)" ng-model="activity" class={{showYellow(activity.activity_name)}}>
+        <li ng-repeat="activity in Activities"
+            ng-click="go_register(activity.activity_name)"
+            ng-model="activity"   
+            class={{showYellow(activity.activity_name)}}>
             <br/>
             <span class="header-left " >{{activity.activity_name}}</span>
             <span class="header-right" > > </span>
         </li>
     </ul>
-    <!--Activities--><!--details()-->
 </div>
 
 
