@@ -31,6 +31,22 @@ var native_accessor = {
                sendMessage(json_message);//发送短信（包含保存信息的函数和刷新页面函数）
            }
        }
+
+
+        if(verifiedBidMessage(json_message))//验证短信格式
+        {
+            if(verifiedIsRegister(json_message))//验证是否报名
+            {
+                if(!verifiedBidPhoneIsRepeat(json_message))
+                {}
+                else
+                {}
+            }
+//            if(!verifiedIsRepeat(json_message))//验证号码是否重复，活动是否重复
+//            {
+//                sendMessage(json_message);//发送短信（包含保存信息的函数和刷新页面函数）
+//            }
+        }
     }
 };
 
