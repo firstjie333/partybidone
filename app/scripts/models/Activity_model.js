@@ -21,8 +21,8 @@
 //"activity_messages":创建时间（暂时保留，以后没有用处可以删除）
         function saveActivity(activity_name)
         {
-            var id=isKeyNULL('activities') ? 1: getLocal('activities').length+1;
-            var activity=new Activity(activity_name,id);
+//          var id=isKeyNULL('activities') ? 1: getLocal('activities').length+1;
+            var activity=new Activity(activity_name);
             setLocal('activities',activity);
         }
 
@@ -56,11 +56,11 @@
 
 
 /**********************当前正在进行的活动对象(key='current_activity')*****************
- current_activity=
- {
+current_activity=
+{
     "activity_name":
- }
- * ****************/
+}
+* ****************/
 
         function CurrentActivity(activity_name)
         {
@@ -69,10 +69,10 @@
 
 /************************当前页面所属的活动名称对象(key='details_activity')***********
 details_activity=
- {
- "details_activityname":
- }
- * *************************/
+{
+"details_activityname":
+}
+* *************************/
 
         function DetailsActivity(activity_name)
         {

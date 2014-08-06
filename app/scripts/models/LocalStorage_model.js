@@ -43,3 +43,9 @@
         }
 
 
+/**根据key，删除某个localstorage*/
+
+        function removeLocal(key)
+        {
+            localStorage.removeItem(key);
+        }

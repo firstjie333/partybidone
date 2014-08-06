@@ -10,7 +10,7 @@
         {
            this.activity_name=activity_name;
            this.bid_id= bid_id;
-           this.bid_messages=[];
+           this.bid_name="竞价"+bid_id;
         }
 
         function  lengthOfActivityBids(activity_name)
@@ -25,8 +25,8 @@
                 var bids=getLocal('bids');
                 for(var i=0;i<bids.length;i++)
                 {
-                    if(bids[i]==activity_name)
-                    {id=id+1;}
+                    if(bids[i].activity_name==activity_name)
+                        {id=id+1;}
                 }
                 return id;
             }
@@ -64,12 +64,12 @@
 
 
 /************************当前正在进行的竞价对象(key='current_bid')*******
- * current_bid=
- {
+* current_bid=
+{
    "bid_id":
    "activity_name":
- }
- * **************************/
+}
+* **************************/
         function CurrentBid(activity_name,bid_id)
         {
             this.activity_name=activity_name;
@@ -78,12 +78,12 @@
 
 
 /************************当前页面所属的竞价名称(key='details_bid')***********
- details_bid=
- {
- "details_activityname":
- "detais_bidID":
- }
- * *************************/
+details_bid=
+{
+"details_activityname":
+"detais_bidID":
+}
+* *************************/
         function DetailsBid(activity_name,bid_id)
         {
             this.activity_name=activity_name;

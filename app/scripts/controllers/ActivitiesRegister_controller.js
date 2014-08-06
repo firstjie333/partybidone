@@ -85,8 +85,8 @@ angular.module('angularApp')
         {
            if(confirm("确认要结束本次报名？"))
            {
-               writeCurrentActivityStatus("end");   //设置当前状态
-               localStorage.removeItem('current_activity');
+               removeLocal('current_activity')      //删除当前活动
+               writeCurrentActivityStatus("end");   //设置当前活动状态
                $location.path('/BidLists');//跳转到竞价列表页面
            }
        }

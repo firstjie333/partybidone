@@ -8,13 +8,28 @@ angular.module('angularApp')
     .controller('BidListsController', function ($scope,$location) {
 
 /************初始化***************/
-        $scope.Bids=isKeyNULL('bids')?[]:getLocal('bids').reverse();
+        $scope.Bids=getBidOfActivityName()==[]?[]:getBidOfActivityName().reverse();
         buttonStatus();
+
+        function  getBidOfActivityName()
+        {
+            var this_bids=[];
+            var bids=getLocal('bids');
+            for(var i=0;i<bids.length;i++)
+            {
+                if(bids[i].activity_name==getLocal('details_activity').activity_name)
+                {
+                    this_bids.push(bids[i]);
+                }
+            }
+            return this_bids;
+        }
+
 
         function buttonStatus()
         {
-            if(isKeyNULL('current_bid_status'))
-               {   $scope.the_button_status = 'show_begin';}
+            if(getLocalString('current_activity_status')=="end"||getLocalString('current_activity_status')=="end_activitycreate")
+               { $scope.the_button_status = 'show_begin';}
             else
                {   $scope.the_button_status = 'disabled_begin';}
 
