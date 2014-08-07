@@ -443,9 +443,14 @@ footer {
 }
 
 .btn-4:active, .btn-4.active {
-
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #1a86cf), color-stop(0.02, #0066b6), color-stop(1, #004f8f));
-	/*box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);*/
+    width:100%;
+    line-height: 35px;
+    font-size: 20px;
+    padding:0px 16px;
+    border-radius: 4px;
+    border: 1px solid #000509;
+	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #000509), color-stop(0.02, #001c32), color-stop(1, #000509));
+	box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);
 }
 .btn.disabled,{
     background-color: #fdfff8;
@@ -611,11 +616,11 @@ footer {
 
 .list-style-2 li {
     line-height: 40px;
-	padding:10 10px;
+	/*padding:10 10px;*/
 	border-bottom:1px solid #ccc;
 	border-top:1px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
-	font-size:24px;
+	font-size:16px;
 	position: relative;
 }
 
@@ -623,36 +628,42 @@ footer {
 	text-decoration: none;
 }
 
-.list-style-2 i {
+.list-style-2 i1 {
 	position: absolute;
-	right: 10px;
-	top: 50%;
-	margin-top: -14px;
-	font-size: 24px;
-	color: #ccc;
-	font-style: normal;
-	font-weight: normal;
+	top: 0%;
+	font-size:16px;
+    color: #000000;
+    left:36px;
+    line-height: 20px;
+}
+.list-style-2 i2 {
+    position: absolute;
+    top: 50%;
+    font-size:16px;
+    color: #000000;
+    left:36px;
+    line-height: 20px;
 }
 
-.list-style-2 i .btn-2 {
-	line-height: 28px;
-	font-size: 14px;
-	padding:0px 10px;
-}
+/*.list-style-2 i .btn-2 {*/
+	/*line-height: 28px;*/
+	/*font-size: 14px;*/
+	/*padding:0px 10px;*/
+/*}*/
 
 .list-style-2 h3 {
-	font-size: 16px;
-	/*font-weight: bold;*/
+	font-size: 24px;
 	margin: 3px 0 2px 0;
 	padding: 0;
+    width: 100%;
 }
 /*修改*/
 .list-style-2 p {
   	font-size: 16px;
-    /*text-index:5em;*/
 	color:#000000;
 	margin: 0 0 5px 0;
 }
+
 
 .list-style-3 {
 	list-style: none;

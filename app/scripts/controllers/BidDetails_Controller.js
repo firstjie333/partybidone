@@ -17,49 +17,26 @@ angular.module('angularApp')
         {
             switch(readCurrentBidStatus())
             {
-                case "begin_bid": $scope.the_button_status="show_end";break;
-                case "end_bid":   $scope.the_button_status="disabled_end";break;
+                case "begin_bid":    $scope.the_button_status="show_end";break;
+                case "end_bid":      $scope.the_button_status="disabled_end";break;
                 case "before_begin": $scope.the_button_status="disabled_end";break;////?????
             }
         }
 
-//找出当前活动的所有bid_message
-        function  getBidMessageOfActivityName()
+//找出当前页面的所有bid_message
+        function  getBidMessagesOfThisPage()
         {
-            var this_messages=[];
             var bid_messages=getLocal('bid_messages');
-            for(var i=0;i<bid_messages.length;i++)
-            {
-                if(bid_messages[i].activity_name==getLocalString('current_bid').activity_name)
-                {
-                    this_messages.push(bid_messages[i]);
-                }
-            }
+            var this_messages=_(bid_messages).filter(function(bid_message)
+                    {
+                         return bid_message.activity_name==getLocal('details_activity').activity_name && bid_message.bid_id == getLocal('details_bid').bid_id
+                    });
             return this_messages;
         }
-//找出当前竞价的所有bid_messages
-        function  getBidMessagesOfBidID()
-        {
-            var bid_of_bidID=[];
-            var bid_of_activity_name=getBidMessageOfActivityName();
-            if(!(bid_of_activity_name==[]))
-            {
-                for(var i=0;i<bid_of_activity_name.length;i++)
-                {
-                    if(bid_of_activity_name[i].bid_id==getLocalString('current_bid').bid_id)
-                    {
-                        bid_of_bidID.push(bid_of_activity_name[i]);
-                    }
-                }
-            }
-            return bid_of_bidID;
-        }
-
-
  //显示已竞价的信息列表和人数
         function showBidMessages()
         {
-            $scope.BidsMessages=getBidMessagesOfBidID();
+            $scope.BidsMessages=getBidMessagesOfThisPage();
             $scope.the_bid_count=$scope.BidsMessages==[]?0:$scope.BidsMessages.length;
 
             console.log($scope.BidsMessages);
