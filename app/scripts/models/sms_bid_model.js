@@ -87,38 +87,44 @@
 //sendBidMessage(json_message):回复短信
             function  sendBidMessage(json_message)
             {
-                switch(readCurrentBidStatus())
+                if(readCurrentActivityStatus()!="end_bidcreate")
                 {
+//                    console.log('对不起，竞价活动尚未开始！');
+                        native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动尚未开始！');
+                }
+                else
+                {
+                switch(readCurrentBidStatus())
+                  {
                     case "begin_bid":
-                        if(!verifiedIsRegister(json_message))
+                        if (!verifiedIsRegister(json_message))
                         {
-                            console.log('对不起，你没有报名此次活动！');
-//                          native_accessor.send_sms(json_message.messages[0].phone,'对不起，你没有报名此次活动！');
-                            return ;
-                        }
-                        if(verifiedBidPhoneIsRepeat(json_message))
-                        {
-                            console.log('请勿重复出价！');
+//                            console.log('对不起，你没有报名此次活动！');
+                          native_accessor.send_sms(json_message.messages[0].phone,'对不起，你没有报名此次活动！');
                             return;
-//                          native_accessor.send_sms(json_message.messages[0].phone,'请勿重复出价！');}
                         }
-                        saveBidMessage(json_message);
-                        refreshBidDetailsPage();
-                        console.log('恭喜，已出价成功！');
-//                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，已出价成功！');
-                        break;
-                    case "end_bid":
-                        console.log('对不起，竞价活动已结束！');
-//                      native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动已结束！');
-                        break;
-                    default:
-                        if(readCurrentActivityStatus()!="end_bidcreate")
+                        if (verifiedBidPhoneIsRepeat(json_message))
                         {
-                          console.log('对不起，竞价活动尚未开始！');
-//                        native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动尚未开始！');
+//                            console.log('请勿重复出价！');
+                            native_accessor.send_sms(json_message.messages[0].phone,'请勿重复出价！');
+                            return;
                         }
 
+                        saveBidMessage(json_message);
+                        refreshBidDetailsPage();
+//                        console.log('恭喜，已出价成功！');
+                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，已出价成功！');
+                        break;
+                    case "end_bid":
+//                        console.log('对不起，竞价活动已结束！');
+                          native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动已结束！');
+                        break;
+                    default:
+//                        console.log('对不起，竞价活动尚未开始!');
+                          native_accessor.send_sms(json_message.messages[0].phone,'对不起，竞价活动尚未开始!');
                 }
+                }
+
             }
 
 //refreshPage():刷新正在进行的活动页面

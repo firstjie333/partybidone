@@ -39,7 +39,6 @@ var native_accessor = {
                 {
                    sendBidMessage(json_message);//发送短信（包含保存信息的函数和刷新页面函数）
                 }
-
     }
 };
 
