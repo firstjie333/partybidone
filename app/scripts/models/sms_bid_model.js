@@ -108,12 +108,16 @@
 //                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，已出价成功！');
                         break;
                     case "end_bid":
-                        console.log('对不起，活动已结束！');
+                        console.log('对不起，竞价活动已结束！');
 //                      native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动已结束！');
                         break;
                     default:
-                           console.log('对不起，活动尚未开始！');
+                        if(readCurrentActivityStatus()!="end_bidcreate")
+                        {
+                          console.log('对不起，竞价活动尚未开始！');
 //                        native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动尚未开始！');
+                        }
+
                 }
             }
 
