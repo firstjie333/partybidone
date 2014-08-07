@@ -11,7 +11,6 @@
             if(json_message!=null)
             {
                 var message = (json_message.messages[0].message).replace(/\s/g, "");//去掉空格,其中\s：space表示空格，或者写为" "
-                console.log((message.length>=2) && (message.substr(0,2).toUpperCase() == "JJ"));
                 return   (message.length>=2) && (message.substr(0,2).toUpperCase() == "JJ");
             }
             else
@@ -26,14 +25,14 @@
         {
             var user_phone = json_message.messages[0].phone;
             var activity_name =isKeyNULL('current_bid')?"":getLocal('current_bid').activity_name;
-            console.log('user_phone'+user_phone);
-            console.log('activity_name '+ activity_name );
+//            console.log('user_phone'+user_phone);
+//            console.log('activity_name '+ activity_name );
             var registerMessages=getLocal('messages');
             var is_register=_.some(registerMessages, function(isregister)
             {
                 return isregister.user_phone==user_phone && isregister.activity_name==activity_name;
             })
-            console.log('是否报名'+is_register);
+//            console.log('是否报名'+is_register);
             return  is_register;
         }
 
@@ -53,7 +52,7 @@
                     {
                         return bid_message.user_phone==user_phone && bid_message.activity_name==activity_name  &&  bid_message.bid_id==bid_id;
                     })
-                 console.log('是否重复报名'+is_repeat);
+//                 console.log('是否重复报名'+is_repeat);
                  return   is_repeat;
                 }
                 return false;
@@ -77,7 +76,7 @@
                        return register.user_phone==user_phone && register.activity_name==activity_name;
                     });
                     var user_name=user[0].user_name;
-                    console.log(user[0].user_name);
+//                    console.log(user[0].user_name);
 
                     var bid_message=new MessageBid(activity_name,bid_id,user_name,user_price,user_phone);
                     setLocal('bid_messages',bid_message);

@@ -28,21 +28,39 @@ angular.module('angularApp')
 
         function buttonStatus()
         {
-            if(getLocalString('current_activity_status')=="end")
-               {   $scope.the_button_status = 'show_begin';}
-            else if(getLocalString('current_activity_status')=="end_activitycreate")
-               {
-                   var activity_name=getLocal('details_activity').activity_name;
-                   var register_messages=getLocal('messages');
-                   var istrue=_(register_messages).some(function(register)
-                       {
-                           register.activity_name=activity_name;
-                       }
-                   )
-                   $scope.the_button_status= istrue=='true' ? "show_begin":"disabled_begin";
-               }
-            else
-               {   $scope.the_button_status = 'disabled_begin';}
+            //当前页面所对应的活动是否有报名信息(需要报名以后才能竞价 )
+            var activity_name=getLocal('details_activity').activity_name;
+            var register_messages=getLocal('messages');
+            var is_register = _(register_messages).some(function(register)
+                {
+                    register.activity_name=activity_name;
+                }
+            );
+            //当前是否有竞价正在进行（如果有竞价正在进行不能开始）
+            var is_begin_bid = getLocal('current_bid')!=null;
+            $scope.the_button_status= (is_register && is_begin_bid )? "show_begin":"disabled_begin";
+
+
+
+
+
+
+//
+//            if(getLocalString('current_activity_status')=="end")
+//               {   $scope.the_button_status = 'show_begin';}
+//            else if(getLocalString('current_activity_status')=="end_activitycreate")
+//               {
+//                   var activity_name=getLocal('details_activity').activity_name;
+//                   var register_messages=getLocal('messages');
+//                   var istrue=_(register_messages).some(function(register)
+//                       {
+//                           register.activity_name=activity_name;
+//                       }
+//                   )
+//                   $scope.the_button_status= istrue=='true' ? "show_begin":"disabled_begin";
+//               }
+//            else
+//               {   $scope.the_button_status = 'disabled_begin';}
 
         }
 
