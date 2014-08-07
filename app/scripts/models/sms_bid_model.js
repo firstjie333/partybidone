@@ -90,14 +90,23 @@
                 switch(readCurrentBidStatus())
                 {
                     case "begin_bid":
+                        if(!verifiedIsRegister(json_message))
+                        {
+                            console.log('对不起，你没有报名此次活动！');
+//                          native_accessor.send_sms(json_message.messages[0].phone,'对不起，你没有报名此次活动！');
+                            return ;
+                        }
+                        if(verifiedBidPhoneIsRepeat(json_message))
+                        {
+                            console.log('请勿重复出价！');
+//                          native_accessor.send_sms(json_message.messages[0].phone,'请勿重复出价！');}
+                        }
                         saveBidMessage(json_message);
                         refreshBidDetailsPage();
                         console.log('恭喜，已出价成功！');
 //                        native_accessor.send_sms(json_message.messages[0].phone,'恭喜，已出价成功！');
                         break;
                     case "end_bid":
-                        saveBidMessage(json_message);
-                        refreshBidDetailsPage();
                         console.log('对不起，活动已结束！');
 //                      native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动已结束！');
                         break;
@@ -121,15 +130,4 @@
                             })
                     }
                 }
-
-
-//notify_message_received(message_json):真正执行的发短信的函数
-function notify_message_received(message_json)
-{
-    native_accessor.receive_message(message_json);
-}
-
-//By  fengjie：
-//执行notify_message_received(message_json)——>调用native_accessor.receive_message(message_json)
-//——>调用 process_received_message :function (json_message)：这个函数才是真正一些操作.
 

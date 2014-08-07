@@ -12,11 +12,20 @@ angular.module('angularApp')
             $location.path('/CreateActivity');
         }
 
-        var acts=getLocal("activities");
-        $scope.Activities=acts.reverse();
+
+        $scope.Activities=getLocal("activities").reverse();
+        buttonStatus();
 
 
 /************绑定的函数*****************/
+        function buttonStatus()
+        {
+           $scope.the_button_status= readCurrentBidStatus()=="begin_bid" ? "disabled" : "show";
+        }
+
+
+
+
 //创建新的活动
         $scope.createActivity=function()
         {

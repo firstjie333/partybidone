@@ -37,23 +37,7 @@ var native_accessor = {
         /*************竞价短信*********************/
                 if(verifiedBidMessage(json_message))//验证短信格式
                 {
-                    if(verifiedIsRegister(json_message))//验证是否报名
-                    {
-                        if(verifiedBidPhoneIsRepeat(json_message))//验证是否重复
-                        {
-                            console.log('请勿重复出价！');
-        //                 native_accessor.send_sms(json_message.messages[0].phone,'请勿重复出价！');}
-                        }
-                        else
-                        {
-                            sendBidMessage(json_message);//发送短信（包含保存信息的函数和刷新页面函数）
-                        }
-                    }
-                    else
-                    {
-                        console.log('对不起，你没有报名此次活动！');
-        //              native_accessor.send_sms(json_message.messages[0].phone,'对不起，你没有报名此次活动！');
-                    }
+                   sendBidMessage(json_message);//发送短信（包含保存信息的函数和刷新页面函数）
                 }
 
     }

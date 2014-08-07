@@ -448,15 +448,15 @@ footer {
     font-size: 20px;
     padding:0px 16px;
     border-radius: 4px;
-    border: 1px solid #000509;
-	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #000509), color-stop(0.02, #001c32), color-stop(1, #000509));
-	box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);
+    border: 1px solid #234576;
+    background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #5ab6fc), color-stop(0.02, #1296eb), color-stop(1, #0073c4));
+    box-shadow: inset 0px 1px 6px -3px rgba(0,0,0, .5);
 }
 .btn.disabled,{
     background-color: #fdfff8;
 }
 .btn[disabled] {
-    color: #000000;
+    color: #fbfffb;
     /*background-color: #e6e6e6;*/
     /**background-color: #d9d9d9;*/
 }
