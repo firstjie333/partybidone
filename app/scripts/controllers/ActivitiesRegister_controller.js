@@ -24,17 +24,16 @@ angular.module('angularApp')
             else
             {
                 if (getLocalString('current_activity_status') == 'end' || getLocalString('current_activity_status') == 'end_activitycreate')
-                {   $scope.the_button_status = 'show_begin';}
+                    {   $scope.the_button_status = 'show_begin';}
                 else if (getLocalString('current_activity_status') == 'end_bidcreate')
-                {   $scope.the_button_status = 'disabled_begin';}
+                    {   $scope.the_button_status = 'disabled_begin';}
                 else
-                {
-
-                    if (getLocal('details_activity').activity_name == getLocal('current_activity').activity_name)
-                    {   $scope.the_button_status = 'show_end'; }
-                    else
-                    {   $scope.the_button_status = 'disabled_begin'; }
-                }
+                    {
+                        if (getLocal('details_activity').activity_name == getLocal('current_activity').activity_name)
+                             {   $scope.the_button_status = 'show_end'; }
+                        else
+                             {   $scope.the_button_status = 'disabled_begin';}
+                    }
             }
 
         }
