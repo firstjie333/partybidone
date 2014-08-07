@@ -19,6 +19,7 @@ angular.module('angularApp')
             {
                 case "begin_bid": $scope.the_button_status="show_end";break;
                 case "end_bid":   $scope.the_button_status="disabled_end";break;
+                case "before_begin": $scope.the_button_status="disabled_end";break;////?????
             }
         }
 
@@ -60,6 +61,8 @@ angular.module('angularApp')
         {
             $scope.BidsMessages=getBidMessagesOfBidID();
             $scope.the_bid_count=$scope.BidsMessages==[]?0:$scope.BidsMessages.length;
+
+            console.log($scope.BidsMessages);
         }
 
 
@@ -79,5 +82,11 @@ angular.module('angularApp')
             }
         }
 
+
+//刷新页面
+        $scope.refresh_bidDetailsPage=function()
+        {
+            showBidMessages();
+        }
 
     });
