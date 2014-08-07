@@ -17,9 +17,20 @@ angular.module('angularApp')
         {
             switch(readCurrentBidStatus())
             {
-                case "begin_bid":    $scope.the_button_status="show_end";break;
+                case "begin_bid":
+                {
+                       var details_activity_name= getLocal('details_activity').activity_name;
+                       var details_bid_id=getLocal('details_bid').bid_id;
+                       if(getLocal('current_bid').activity_name==details_activity_name  &&  getLocal('current_bid').bid_id==details_bid_id)
+                       {
+                           $scope.the_button_status="show_end";
+                       }
+                        else
+                       {  $scope.the_button_status="disabled_end";}
+                        break;
+                }
                 case "end_bid":      $scope.the_button_status="disabled_end";break;
-                case "before_begin": $scope.the_button_status="disabled_end";break;////?????
+                default: $scope.the_button_status="disabled_end";break;
             }
         }
 
@@ -38,8 +49,6 @@ angular.module('angularApp')
         {
             $scope.BidsMessages=getBidMessagesOfThisPage();
             $scope.the_bid_count=$scope.BidsMessages==[]?0:$scope.BidsMessages.length;
-
-            console.log($scope.BidsMessages);
         }
 
 

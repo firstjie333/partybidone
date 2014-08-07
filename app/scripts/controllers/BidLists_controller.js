@@ -28,8 +28,19 @@ angular.module('angularApp')
 
         function buttonStatus()
         {
-            if(getLocalString('current_activity_status')=="end"||getLocalString('current_activity_status')=="end_activitycreate")
-               { $scope.the_button_status = 'show_begin';}
+            if(getLocalString('current_activity_status')=="end")
+               {   $scope.the_button_status = 'show_begin';}
+            else if(getLocalString('current_activity_status')=="end_activitycreate")
+               {
+                   var activity_name=getLocal('details_activity').activity_name;
+                   var register_messages=getLocal('messages');
+                   var istrue=_(register_messages).some(function(register)
+                       {
+                           register.activity_name=activity_name;
+                       }
+                   )
+                   $scope.the_button_status= istrue=='true' ? "show_begin":"disabled_begin";
+               }
             else
                {   $scope.the_button_status = 'disabled_begin';}
 

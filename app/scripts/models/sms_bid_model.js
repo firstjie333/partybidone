@@ -99,6 +99,7 @@
                         if(verifiedBidPhoneIsRepeat(json_message))
                         {
                             console.log('请勿重复出价！');
+                            return;
 //                          native_accessor.send_sms(json_message.messages[0].phone,'请勿重复出价！');}
                         }
                         saveBidMessage(json_message);
@@ -111,7 +112,7 @@
 //                      native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动已结束！');
                         break;
                     default:
-                        console.log('对不起，活动尚未开始！');
+                           console.log('对不起，活动尚未开始！');
 //                        native_accessor.send_sms(json_message.messages[0].phone,'对不起，活动尚未开始！');
                 }
             }

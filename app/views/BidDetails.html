@@ -16,7 +16,7 @@
 <div class="wrapper">
     <ul class="list-style-2"  id="id_refresh_bidDetailsPage">
         <li ng-repeat="bidMessage in BidsMessages">
-            <p>id</p>
+            <p>{{bidMessage.bid_number}}</p>
             <i1 class="header-left" >{{bidMessage.user_name}}</i1>
             <i2 class="header-left" >{{bidMessage.user_phone}}</i2>
         </li>
