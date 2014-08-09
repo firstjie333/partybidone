@@ -38,7 +38,9 @@ angular.module('angularApp')
             );
             //当前是否有竞价正在进行（如果有竞价正在进行不能开始）
             var is_begin_bid =isKeyNULL('current_bid');
-            $scope.the_button_status= (is_register && is_begin_bid ) ? "show_begin" : "disabled_begin";
+            //当前是否有活动正在进行（如果有活动正在进行则不能开始）
+            var is_begin_activity=isKeyNULL('current_activity');
+            $scope.the_button_status= (is_register && is_begin_bid && is_begin_activity ) ? "show_begin" : "disabled_begin";
         }
 
 
