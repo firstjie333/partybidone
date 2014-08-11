@@ -1,14 +1,14 @@
 <header>
     活动报名({{Messages_count}}人)
     <div class="header-left">
-       <button class="side-slide-trigger btn-style btn-4" ng-click="go_activityLists()" >返回</button>
+       <button class="side-slide-trigger btn-style btn-4" ng-click="goActivityLists()" >返回</button>
     </div>
     <div class="header-right"  ng-switch="the_button_status">
         <!--三种状态：开始可用show_begin，开始不可用disabled_begin,结束可用show_end-->
-        <button ng-switch-when="show_end"        class="btn-style btn-4 " ng-click="end_register()">结束</button>
-        <button ng-switch-when="disabled_begin"  class="btn-style btn-4 " ng-click="begin_register()" ng-disabled="true" style="background: #dcdcdc">开始</button>
-        <button ng-switch-when="show_begin"      class="btn-style btn-4 " ng-click="begin_register()" >开始</button>
-        <button ng-switch-default                class="btn-style btn-4"  ng-click="begin_register()" >开始</button>
+        <button ng-switch-when="show_end"        class="btn-style btn-4 " ng-click="endRegister()">结束</button>
+        <button ng-switch-when="disabled_begin"  class="btn-style btn-4 " ng-click="beginRegister()" ng-disabled="true" style="background: #dcdcdc">开始</button>
+        <button ng-switch-when="show_begin"      class="btn-style btn-4 " ng-click="beginRegister()" >开始</button>
+        <button ng-switch-default                class="btn-style btn-4"  ng-click="beginRegister()" >开始</button>
     </div>
 </header>
 <body>
@@ -28,6 +28,6 @@
 <footer>
     <ul class="footer-nav footer-nav-2tabs">
         <li ><button class="btn-4" style="width: 100%" ></i>  报名</button></li>
-        <li ><button class="btn-4 " style="width: 100%" ng-click="go_bidLists()"></i>  竞价</button></li>
+        <li ><button class="btn-4 " style="width: 100%" ng-click="goBidLists()"></i>  竞价</button></li>
     </ul>
 </footer>

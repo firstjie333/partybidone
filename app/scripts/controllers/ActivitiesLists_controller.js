@@ -18,12 +18,11 @@ angular.module('angularApp')
 
 
 /************绑定的函数*****************/
+//创建活动的按钮状态
         function buttonStatus()
         {
-           $scope.the_button_status= readCurrentBidStatus()=="begin_bid" ? "disabled" : "show";
+           $scope.the_button_status= Bid.readCurrentBidStatus()=="begin_bid" ? "disabled" : "show";
         }
-
-
 
 
 //创建新的活动
@@ -34,10 +33,9 @@ angular.module('angularApp')
 
 
 //跳转活动报名页面
-        $scope.go_register=function(name)
+        $scope.goRegister=function(name)
         {
-            var detail=new DetailsActivity(name);//创建当前活动报名页面的对象
-            setLocalString('details_activity',detail);
+            DetailsActivity.saveDetailsActivity(name);
             $location.path('/ActivitiesRegister');//跳转创建活动报名页面
         }
 

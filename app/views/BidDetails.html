@@ -2,12 +2,12 @@
     竞价{{the_bid_id}}（{{the_bid_count}}人）
     <title>竞价{{the_bid_id}}（{{the_bid_count}}人）</title>
     <div class="header-left">
-        <button class="btn-style btn-4" ng_click="go_back_bidsLists()" >返回</button>
+        <button class="btn-style btn-4" ng_click="goBackBidsLists()" >返回</button>
     </div>
     <div class="header-right" ng-switch="the_button_status">
-        <button ng-switch-when="show_end"      class="btn-style btn-4 "  ng-click="end_bidDetails()">结束</button>
+        <button ng-switch-when="show_end"      class="btn-style btn-4 "  ng-click="endBidDetails()">结束</button>
         <button ng-switch-when="disabled_end"  class="btn-style btn-4 "  ng-disabled="true" style="background: #dcdcdc">结束</button>
-        <button ng-switch-default              class="btn-style btn-4 "  ng-click="end_bidDetails()">结束</button>
+        <button ng-switch-default              class="btn-style btn-4 "  ng-click="endBidDetails()">结束</button>
     </div>
 </header>
 
