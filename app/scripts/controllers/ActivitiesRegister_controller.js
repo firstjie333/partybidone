@@ -60,8 +60,9 @@ angular.module('angularApp')
     $scope.beginRegister=function()
     {
         Activity.writeCurrentActivityStatus('begin'); //活动状态变为begin
-        CurrentActivity.saveCurrentActivity($scope.details_activityname);
 
+        var current_activity=new CurrentActivity($scope.details_activityname);
+        current_activity.saveCurrentActivity(current_activity.activity_name);
 
         showRegisterMessages();//显示成功报名列表信息
         buttonStatus();

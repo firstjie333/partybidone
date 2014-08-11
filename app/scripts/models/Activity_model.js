@@ -17,6 +17,7 @@
         {
             var activity=new Activity(activity_name);
             setLocal('activities',activity);
+            return activity;
         };
 
 /***************************活动状态***********************************/
@@ -28,6 +29,7 @@
  case "end_bidcreate":活动正常结束，用户创建竞价开始
  ***********************************************************************/
 
+      /****************关于状态改变的方法尽可能写成实例方法**********************/
 
 //write_current_status(current_status)：当前活动状态写入
             Activity.writeCurrentActivityStatus=function(current_activity_status)
@@ -51,7 +53,7 @@
             this.activity_name=activity_name;
         }
 
-         CurrentActivity.saveCurrentActivity=function(activity_name)
+         CurrentActivity.prototype.saveCurrentActivity=function(activity_name)
         {
             var current_activity=new CurrentActivity(activity_name);
             setLocalString('current_activity',current_activity);//存储当前正在进行的活动
@@ -66,7 +68,7 @@
             this.activity_name=activity_name;
         }
 
-        DetailsActivity.saveDetailsActivity=function(activity_name)
+        DetailsActivity.prototype.saveDetailsActivity=function(activity_name)
         {
             var detail=new DetailsActivity(activity_name);//创建当前活动报名页面的对象
             setLocalString('details_activity',detail);

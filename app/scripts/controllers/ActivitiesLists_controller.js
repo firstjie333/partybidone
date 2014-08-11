@@ -11,8 +11,6 @@ angular.module('angularApp')
         {
             $location.path('/CreateActivity');
         }
-
-
         $scope.Activities=getLocal("activities").reverse();
         buttonStatus();
 
@@ -35,7 +33,8 @@ angular.module('angularApp')
 //跳转活动报名页面
         $scope.goRegister=function(name)
         {
-            DetailsActivity.saveDetailsActivity(name);
+            var details_activity=new DetailsActivity(name);
+            details_activity.saveDetailsActivity(details_activity.activity_name);
             $location.path('/ActivitiesRegister');//跳转创建活动报名页面
         }
 
