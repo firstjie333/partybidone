@@ -16,8 +16,6 @@
         this.bid_number=bid_number;
     }
 
-
-
         MessageBid.getBidNumber=function(activity_name,bid_id)
         {
             var bid_messages=getLocal('bid_messages');
