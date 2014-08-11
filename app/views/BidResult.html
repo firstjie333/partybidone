@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
+<header>
+    竞价{{the_bid_id}}（{{the_bid_count}}人）
+    <div class="header-left">
+        <button class="btn-style btn-4" ng_click="goBackBidsLists()" >返回</button>
+    </div>
+    <div class="header-right" ng-switch="the_button_status">
+        <button ng-switch-when="show_end"      class="btn-style btn-4 "  ng-click="endBidDetails()">统计</button>
+    </div>
+</header>
 
-</body>
-</html>
+
+
+<div class="wrapper">
+    <ul class="list-style-2"  id="id_refresh_bidDetailsPage">
+        <li ng-repeat="bidMessage in BidsMessages">
+            <p>{{bidMessage.bid_number}}</p>
+            <i1 class="header-left" >{{bidMessage.user_name}}</i1>
+            <i2 class="header-left" >{{bidMessage.user_phone}}</i2>
+        </li>
+
+        </li>
+    </ul>
+</div>
+
