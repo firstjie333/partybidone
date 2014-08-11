@@ -78,7 +78,7 @@
             this.bid_id=bid_id;
         }
 
-        CurrentBid.prototype.saveCurrentBid=function(activity_name,bid_id)
+        CurrentBid.prototype.updateCurrentBid=function(activity_name,bid_id)
         {
             var details_bid=new CurrentBid(activity_name,bid_id)
             setLocalString('current_bid',details_bid);
@@ -98,7 +98,7 @@ details_bid=
         }
 
 
-        DetailsBid.prototype.saveDetailsBid=function(activity_name,bid_id)
+        DetailsBid.prototype.updateDetailsBid=function(activity_name,bid_id)
         {
             var details_bid=new DetailsBid(activity_name,bid_id);
             setLocalString('details_bid',details_bid);

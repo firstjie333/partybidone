@@ -53,7 +53,7 @@
             this.activity_name=activity_name;
         }
 
-         CurrentActivity.prototype.saveCurrentActivity=function(activity_name)
+         CurrentActivity.prototype.updateCurrentActivity=function(activity_name)
         {
             var current_activity=new CurrentActivity(activity_name);
             setLocalString('current_activity',current_activity);//存储当前正在进行的活动
@@ -68,7 +68,7 @@
             this.activity_name=activity_name;
         }
 
-        DetailsActivity.prototype.saveDetailsActivity=function(activity_name)
+        DetailsActivity.prototype.updateDetailsActivity=function(activity_name)
         {
             var detail=new DetailsActivity(activity_name);//创建当前活动报名页面的对象
             setLocalString('details_activity',detail);

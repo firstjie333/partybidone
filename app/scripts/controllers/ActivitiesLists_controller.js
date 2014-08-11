@@ -34,7 +34,7 @@ angular.module('angularApp')
         $scope.goRegister=function(name)
         {
             var details_activity=new DetailsActivity(name);
-            details_activity.saveDetailsActivity(details_activity.activity_name);
+            details_activity.updateDetailsActivity(details_activity.activity_name);
             $location.path('/ActivitiesRegister');//跳转创建活动报名页面
         }
 

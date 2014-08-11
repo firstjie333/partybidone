@@ -62,7 +62,7 @@ angular.module('angularApp')
         Activity.writeCurrentActivityStatus('begin'); //活动状态变为begin
 
         var current_activity=new CurrentActivity($scope.details_activityname);
-        current_activity.saveCurrentActivity(current_activity.activity_name);
+        current_activity.updateCurrentActivity(current_activity.activity_name);
 
         showRegisterMessages();//显示成功报名列表信息
         buttonStatus();

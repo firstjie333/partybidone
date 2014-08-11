@@ -37,14 +37,13 @@ angular.module('angularApp')
                  { $scope.show_error=true;}
             else
             {
-                 Activity.saveActivity($scope.activity_name);
-                 DetailsActivity.saveDetailsActivity($scope.activity_name);
+                Activity.saveActivity($scope.activity_name);
 
-                if(isKeyNULL('current_activity'))//设置当前状态（说明详见sms.js）
-                    { Activity.writeCurrentActivityStatus("end_activitycreate");}
-                else
-                    { Activity.writeCurrentActivityStatus("begin_activitycreate");}
+                var details_activity=new  DetailsActivity($scope.activity_name);
+                details_activity.updateDetailsActivity(details_activity.activity_name);
 
+                //设置当前状态
+                isKeyNULL('current_activity') ?  Activity.writeCurrentActivityStatus("end_activitycreate") : Activity.writeCurrentActivityStatus("begin_activitycreate");
                 $location.path('/ActivitiesRegister');//跳转创建活动报名页面
             }
 

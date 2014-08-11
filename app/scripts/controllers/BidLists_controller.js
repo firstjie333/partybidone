@@ -51,22 +51,21 @@ angular.module('angularApp')
             var new_bid=Bid.saveBid(activity_name);//存储竞价
 
             var details_bid=new DetailsBid(activity_name,new_bid.bid_id);
-            details_bid.saveDetailsBid(details_bid.activity_name,details_bid.bid_id);
-//            DetailsBid.saveDetailsBid(activity_name,new_bid.bid_id);//存储跳转的竞价信息
+            details_bid.updateDetailsBid(details_bid.activity_name,details_bid.bid_id);
 
             var current_bid=new CurrentBid(activity_name,new_bid.bid_id);
-            current_bid.saveCurrentBid(current_bid.activity_name,current_bid.bid_id);
-//            CurrentBid.saveCurrentBid(activity_name,new_bid.bid_id);//存储当前竞价信息
+            current_bid.updateCurrentBid(current_bid.activity_name,current_bid.bid_id);
 
             Activity.writeCurrentActivityStatus('end_bidcreate'); //活动状态变为end_bidcreate
             Bid.writeCurrentBidStatus('begin_bid');//竞价状态变为begin_bid
              $location.path('/BidDetails');//页面跳转
         }
 
+        
         $scope.goBidDetails=function(activity_name,bid_id)
         {
             var details_bid=new DetailsBid(activity_name,bid_id);
-            details_bid.saveDetailsBid(details_bid.activity_name,details_bid.bid_id);
+            details_bid.updateDetailsBid(details_bid.activity_name,details_bid.bid_id);
             $location.path('/BidDetails');
         }
 
