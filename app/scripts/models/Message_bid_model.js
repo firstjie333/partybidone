@@ -6,6 +6,7 @@
  */
 'use strict';
 
+//竞价信息类
     function MessageBid(activity_name,bid_id,user_name,user_price,user_phone,bid_number)
     {
         this.activity_name=activity_name;
@@ -16,7 +17,7 @@
         this.bid_number=bid_number;
     }
 
-        MessageBid.getBidNumber=function(activity_name,bid_id)
+        MessageBid.getBidLength=function(activity_name,bid_id)
         {
             var bid_messages=getLocal('bid_messages');
             var current_page_bid_messages=_(bid_messages).filter(function(bid_message)
@@ -96,7 +97,7 @@
                     return register.user_phone==user_phone && register.activity_name==activity_name;
                 });
                 var user_name=user[0].user_name;
-                var bid_number=MessageBid.getBidNumber(activity_name,bid_id)+1;
+                var bid_number=MessageBid.getBidLength(activity_name,bid_id)+1;
                 var bid_message=new MessageBid(activity_name,bid_id,user_name,user_price,user_phone,bid_number);
                 setLocal('bid_messages',bid_message);
             }
@@ -106,7 +107,7 @@
 
 
 
-//sendBidMessage(json_message):回复短信
+//回复短信
         MessageBid.sendBidMessage=function(json_message)
         {
             if(Activity.readCurrentActivityStatus()!="end_bidcreate")
@@ -133,7 +134,7 @@
                         }
 
                         MessageBid.saveBidMessage(json_message);
-                        refreshBidDetailsPage();
+                        MessageBid.refreshBidDetailsPage();
         //                        console.log('恭喜，已出价成功！');
                         native_accessor.send_sms(json_message.messages[0].phone,'恭喜，已出价成功！');
                         break;
@@ -151,7 +152,7 @@
 
             //refreshPage():刷新正在进行的活动页面
             //需要在成功接受并存储短信后调用，即
-            function refreshBidDetailsPage()
+            MessageBid.refreshBidDetailsPage=function()
             {
                 //getElementById(页面id号)，返回一个对象，这里应该是返回一个页面对象
                 var refresh = document.getElementById('id_refresh_bidDetailsPage');

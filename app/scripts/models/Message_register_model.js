@@ -3,6 +3,7 @@
  */
 'use strict';
 
+//报名信息类MessageRegister
    function MessageRegister(activity_name,user_name,user_phone)
    {
        this.activity_name=activity_name;
@@ -25,7 +26,7 @@
         }
 
 
-//verifiedIsRepeat():要求是保留重名不重号码的信息，直接考虑电话号码是否重复和报名活动是否重复
+//要求是保留重名不重号码的信息，直接考虑电话号码是否重复和报名活动是否重复
         MessageRegister.verifiedIsRepeat=function(json_message)
         {
             var user_phone = json_message.messages[0].phone;
@@ -43,7 +44,7 @@
         }
 
 
-//SaveMessage(json_message):存储报名信息
+//存储报名信息
             MessageRegister.saveRegisterMessage=function(json_message)
             {
                 if(json_message!=null)
@@ -57,7 +58,7 @@
             }
 
 
-//sendMessage(json_message):回复短信
+//回复短信
         MessageRegister.sendMessage=function(json_message)
         {
             switch( Activity.readCurrentActivityStatus())
@@ -65,13 +66,13 @@
                 case "begin":
         //                        console.log('恭喜，报名成功！');
                     MessageRegister.saveRegisterMessage(json_message);
-                    refreshPage();
+                    MessageRegister.refreshPage();
                     native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                     break;
                 case "begin_activitycreate":
         //                        console.log('恭喜，报名成功！');
                     MessageRegister.saveRegisterMessage(json_message);
-                    refreshPage();
+                    MessageRegister.refreshPage();
                     native_accessor.send_sms(json_message.messages[0].phone,'恭喜，报名成功！');
                     break;
                 case "end":
@@ -86,18 +87,18 @@
             }
         }
 
-        //refreshPage():刷新正在进行的活动页面
-        //需要在成功接受并存储短信后调用，即
-        function refreshPage()
+//刷新正在进行的活动报名的页面
+        MessageRegister.refreshPage=function()
         {
             //getElementById(页面id号)，返回一个对象，这里应该是返回一个页面对象
-            var page_refresh = document.getElementById('id_refresh_page');
-            if (page_refresh) {
+            var page_refresh = document.getElementById('id_refresh_activitiesRegister');
+            if (page_refresh)
+            {
                 var scope = angular.element(page_refresh).scope();
                 scope.$apply(function ()
                 {
                     scope.thisPageRefresh();
-                })
+                });
             }
         }
 

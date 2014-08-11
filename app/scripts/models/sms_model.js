@@ -22,10 +22,6 @@ var native_accessor = {
     process_received_message: function (json_message)
     {
         /*******************报名短信************************/
-//1)短信格式处理：去空格；BM开头；
-//2)提取有用信息包括：姓名，电话号码.并进行存储
-//3)当前活动状态的判定
-//4)回复短信
        if(MessageRegister.verifiedMessage(json_message))//验证短信格式
        {
            if(!MessageRegister.verifiedIsRepeat(json_message))//验证号码是否重复，活动是否重复
@@ -35,21 +31,19 @@ var native_accessor = {
        }
 
         /*************竞价短信*********************/
-                if(MessageBid.verifiedBidMessage(json_message))//验证短信格式
-                {
-                    MessageBid.sendBidMessage(json_message);//发送短信（包含保存信息的函数和刷新页面函数）
-                }
+        if(MessageBid.verifiedBidMessage(json_message))//验证短信格式
+        {
+            MessageBid.sendBidMessage(json_message);//发送短信（包含验证是否报名，验证是否重复，保存信息，刷新页面函数）
+        }
     }
 };
 
 
-//notify_message_received(message_json):真正执行的发短信的函数
+//真正执行的发短信的函数
      function notify_message_received(message_json)
       {
         native_accessor.receive_message(message_json);
        }
 
-//By  fengjie：
-//执行notify_message_received(message_json)——>调用native_accessor.receive_message(message_json)
-//——>调用 process_received_message :function (json_message)：这个函数才是真正一些操作.
+
 
