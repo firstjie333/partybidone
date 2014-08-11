@@ -32,7 +32,7 @@ angular.module('angularApp')
                 {
                    return  register.activity_name==activity_name;
                 });
-            var is_begin_bid =isKeyNULL('current_bid'); //当前是否有竞价正在进行（如果有竞价正在进行不能开始）
+            var is_begin_bid =isKeyNULL('current_bid');         //当前是否有竞价正在进行（如果有竞价正在进行不能开始）
             var is_begin_activity=isKeyNULL('current_activity');//当前是否有活动正在进行（如果有活动正在进行则不能开始）
             $scope.the_button_status= (is_register && is_begin_bid && is_begin_activity ) ? "show_begin" : "disabled_begin";
         }
@@ -48,20 +48,21 @@ angular.module('angularApp')
         {
 
             var activity_name=getLocal('details_activity').activity_name;//获得当前活动名称
-            var new_bid=Bid.saveBid(activity_name);//存储竞价
+            var new_bid=Bid.saveBid(activity_name);                      //存储竞价
 
-            var details_bid=new DetailsBid(activity_name,new_bid.bid_id);
-            details_bid.updateDetailsBid(details_bid.activity_name,details_bid.bid_id);
+            Activity.writeCurrentActivityStatus('end_bidcreate');        //活动状态变为end_bidcreate
+            Bid.writeCurrentBidStatus('begin_bid');                      //竞价状态变为begin_bid
 
-            var current_bid=new CurrentBid(activity_name,new_bid.bid_id);
+            var current_bid=new CurrentBid(activity_name,new_bid.bid_id);//更新当前竞价信息
             current_bid.updateCurrentBid(current_bid.activity_name,current_bid.bid_id);
 
-            Activity.writeCurrentActivityStatus('end_bidcreate'); //活动状态变为end_bidcreate
-            Bid.writeCurrentBidStatus('begin_bid');//竞价状态变为begin_bid
-             $location.path('/BidDetails');//页面跳转
+            $scope.goBidDetails(activity_name,new_bid.bid_id);//更新要跳转的页面竞价信息，并跳转
+//            var details_bid=new DetailsBid(activity_name,new_bid.bid_id);
+//            details_bid.updateDetailsBid(details_bid.activity_name,details_bid.bid_id);
+//            $location.path('/BidDetails');//页面跳转
         }
 
-        
+
         $scope.goBidDetails=function(activity_name,bid_id)
         {
             var details_bid=new DetailsBid(activity_name,bid_id);
