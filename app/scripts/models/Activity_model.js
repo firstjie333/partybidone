@@ -74,3 +74,5 @@
             setLocalString('details_activity',detail);
         }
 
+
+
