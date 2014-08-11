@@ -71,10 +71,6 @@ angular.module('angularApp')
         }
 
 
-
-
-
-
 //是否显示黄色背景色
         $scope.showYellow=function(activity_name,bid_id)
         {
