@@ -11,17 +11,14 @@ angular.module('angularApp')
         $scope.Bids=getBidOfActivityName()==[]?[]:getBidOfActivityName().reverse();
         buttonStatus();
 
+//根据活动名称获得当前活动的竞价列表
         function  getBidOfActivityName()
         {
-            var this_bids=[];
             var bids=getLocal('bids');
-            for(var i=0;i<bids.length;i++)
+            var this_bids= _.filter(bids,function(bid)
             {
-                if(bids[i].activity_name==getLocal('details_activity').activity_name)
-                {
-                    this_bids.push(bids[i]);
-                }
-            }
+               return  bid.activity_name==getLocal('details_activity').activity_name;
+            });
             return this_bids;
         }
 
@@ -34,59 +31,43 @@ angular.module('angularApp')
             var is_register = _(register_messages).some(function(register)
                 {
                    return  register.activity_name==activity_name;
-                }
-            );
-            //当前是否有竞价正在进行（如果有竞价正在进行不能开始）
-            var is_begin_bid =isKeyNULL('current_bid');
-            //当前是否有活动正在进行（如果有活动正在进行则不能开始）
-            var is_begin_activity=isKeyNULL('current_activity');
+                });
+            var is_begin_bid =isKeyNULL('current_bid');         //当前是否有竞价正在进行（如果有竞价正在进行不能开始）
+            var is_begin_activity=isKeyNULL('current_activity');//当前是否有活动正在进行（如果有活动正在进行则不能开始）
             $scope.the_button_status= (is_register && is_begin_bid && is_begin_activity ) ? "show_begin" : "disabled_begin";
         }
 
 
-
-        $scope.go_back_activityLists=function()
+/**********绑定的函数****************/
+        $scope.goBackActivityLists=function()
         {
             $location.path('//ActivitiesLists');
         }
 
-        $scope.create_bidDetails=function()
+        $scope.createBidDetails=function()
         {
 
             var activity_name=getLocal('details_activity').activity_name;//获得当前活动名称
-            var bid_id=lengthOfActivityBids(activity_name)+1;
-            saveBid(activity_name,bid_id);//存储竞价
-            saveDetailsBid(activity_name,bid_id);//存储跳转的竞价信息
-            saveCurrentBid(activity_name,bid_id);//存储当前竞价信息
-            //活动状态变为end_bidcreate
-            writeCurrentActivityStatus('end_bidcreate');
-            //竞价状态变为begin_bid
-            writeCurrentBidStatus('begin_bid');
-            //竞价列表页面的开始按钮状态变为灰色不可点击
-            //竞价列表和活动列表的底色为黄色
+            var new_bid=Bid.saveBid(activity_name);                      //存储竞价
 
+            Activity.writeCurrentActivityStatus('end_bidcreate');        //活动状态变为end_bidcreate
+            Bid.writeCurrentBidStatus('begin_bid');                      //竞价状态变为begin_bid
 
-            //页面跳转
-             $location.path('/BidDetails');
-        }
+            var current_bid=new CurrentBid(activity_name,new_bid.bid_id);//更新当前竞价信息
+            current_bid.updateCurrentBid(current_bid.activity_name,current_bid.bid_id);
 
-        $scope.go_bidDetails=function(activity_name,bid_id)
-        {
-            saveDetailsBid(activity_name,bid_id);//存储跳转的竞价信息
-            $location.path('/BidDetails');
+            $scope.goBidDetails(activity_name,new_bid.bid_id);//更新要跳转的页面竞价信息，并跳转
+//            var details_bid=new DetailsBid(activity_name,new_bid.bid_id);
+//            details_bid.updateDetailsBid(details_bid.activity_name,details_bid.bid_id);
+//            $location.path('/BidDetails');//页面跳转
         }
 
 
-
-        function saveDetailsBid(activity_name,bid_id)
+        $scope.goBidDetails=function(activity_name,bid_id)
         {
             var details_bid=new DetailsBid(activity_name,bid_id);
-            setLocalString('details_bid',details_bid);
-        }
-        function saveCurrentBid(activity_name,bid_id)
-        {
-            var details_bid=new CurrentBid(activity_name,bid_id)
-            setLocalString('current_bid',details_bid);
+            details_bid.updateDetailsBid(details_bid.activity_name,details_bid.bid_id);
+            $location.path('/BidDetails');
         }
 
 
@@ -99,8 +80,8 @@ angular.module('angularApp')
                {return null; }
         }
 
-
-        $scope.go_register=function()
+//跳到报名页面
+        $scope.goRegister=function()
         {
             $location.path('/ActivitiesRegister');
         }

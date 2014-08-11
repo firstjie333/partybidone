@@ -1,10 +1,10 @@
 <header>
     竞价列表
     <div class="header-left">
-        <button class="btn-style btn-4" ng_click="go_back_activityLists()" >返回</button>
+        <button class="btn-style btn-4" ng_click="goBackActivityLists()" >返回</button>
     </div>
     <div class="header-right" ng-switch="the_button_status">
-        <button ng-switch-when="show_begin"      class="btn-style btn-4" ng_click="create_bidDetails()">开始</button>
+        <button ng-switch-when="show_begin"      class="btn-style btn-4" ng_click="createBidDetails()">开始</button>
         <button ng-switch-when="disabled_begin"  class="btn-style btn-4" ng-disabled="true"  style="background: #dcdcdc">开始</button>
         <!--<button ng-switch-default                class="btn-style btn-4" ng-disabled="true"  style="background: #dcdcdc">开始</button>-->
     </div>
@@ -14,7 +14,7 @@
 <div class="wrapper">
     <ul class="list-style-2" >
         <li ng-repeat="bid in Bids"
-            ng-click="go_bidDetails(bid.activity_name,bid.bid_id)"
+            ng-click="goBidDetails(bid.activity_name,bid.bid_id)"
             class={{showYellow(bid.activity_name,bid.bid_id)}}>
             <br/>
             <span class="header-left " >{{bid.bid_name}}</span>
@@ -24,7 +24,7 @@
 
 <footer>
     <ul class="footer-nav footer-nav-2tabs">
-        <li ><button class="btn-style btn-4 " style="width: 100%"  ng-click="go_register()"></i>  报名</button></li>
+        <li ><button class="btn-style btn-4 " style="width: 100%"  ng-click="goRegister()"></i>  报名</button></li>
         <li ><button class="btn-style btn-4 " style="width: 100%"></i>  竞价</button></li>
     </ul>
 </footer>
