@@ -1,7 +1,7 @@
 <header>
     竞价{{bid_id}}（{{bid_messages_count}}人）
     <div class="header-left">
-        <button class="btn-style btn-4" ng_click="goBackBidsLists()" >返回</button>
+        <button class="btn-style btn-4"   ng_click="goBackBidsLists()" >返回</button>
     </div>
     <div class="header-right" >
         <button class="btn-style btn-4 "  ng-click="goBidCensus()">统计</button>
@@ -13,12 +13,15 @@
 <div class="wrapper">
     <ul class="list-style-2">
         <li ng-repeat="page_bid_message in Page_Bid_Messages">
-            <ol class="my-ol"></p>
-            <i1 class="header-left" >{{bidMessage.user_name}}</i1>
-            <i2 class="header-left" >{{bidMessage.user_phone}}</i2>
+            <p class="my-ol">{{page_bid_message.bid_number}}</p>
+            <i1 class="header-left" >{{page_bid_message.user_name}}</i1>
+            <i2 class="header-left" >{{page_bid_message.user_phone}}</i2>
+            <p class="my-ol header-right">￥{{page_bid_message.user_price}}</p>
         </li>
 
-        </li>
     </ul>
 </div>
 
+<footer  class="my-footer" >
+    竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}
+</footer>

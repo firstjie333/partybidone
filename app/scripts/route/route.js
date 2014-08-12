@@ -19,10 +19,10 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-        .when('/',{
-            templateUrl:'views/ActivitiesLists.html',
-            controller: 'ActivitiesListsController'
-       })
+//        .when('/',{
+//            templateUrl:'views/ActivitiesLists.html',
+//            controller: 'ActivitiesListsController'
+//       })
       .when('/ActivitiesLists', {
         templateUrl: 'views/ActivitiesLists.html',
         controller: 'ActivitiesListsController'
@@ -43,7 +43,7 @@ angular
          templateUrl: 'views/BidDetails.html',
          controller: 'BidDetailsController'
       })
-        .when('/BidResult', {
+        .when('/', {
             templateUrl: 'views/BidResult.html',
             controller: 'BidResultController'
         })

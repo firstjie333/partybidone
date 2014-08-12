@@ -805,6 +805,13 @@ footer {
     padding: 0px;
     margin: 0px 0px 0px 0px;
 }
+.my-footer{
+    padding: 16px;
+    text-align: center;
+    position:fixed;
+    font-size: 16px;
+    
+}
 
 
 
