@@ -801,7 +801,10 @@ footer {
     /*!important的意思是：可能原来的css中就有颜色控制,这时候如不加此句,则颜色可能会显示不出来*/
 }
 
-
+.my-ol{
+    padding: 0px;
+    margin: 0px 0px 0px 0px;
+}
 
 
 
