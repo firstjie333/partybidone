@@ -611,6 +611,7 @@ footer {
 	margin:0;
 	width:100%;
 	text-align:left;
+
 }
 
 
@@ -622,6 +623,7 @@ footer {
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
 	font-size:16px;
 	position: relative;
+    height: 40px;
 }
 
 .list-style-2 li a {
@@ -804,13 +806,19 @@ footer {
 .my-ol{
     padding: 0px;
     margin: 0px 0px 0px 0px;
+    padding: 16px;
+    text-align: center;
+    position:fixed;
+    font-size: 16px;
+    min-height: 16px;
 }
 .my-footer{
     padding: 16px;
     text-align: center;
     position:fixed;
     font-size: 16px;
-    
+    min-height: 16px;
+
 }
 
 

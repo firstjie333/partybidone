@@ -43,11 +43,11 @@ angular
          templateUrl: 'views/BidDetails.html',
          controller: 'BidDetailsController'
       })
-        .when('/', {
+        .when('/BidResult', {
             templateUrl: 'views/BidResult.html',
             controller: 'BidResultController'
         })
-        .when('/BidCensus', {
+        .when('/', {
             templateUrl: 'views/BidCensus.html',
             controller: 'BidCensusController'
         })

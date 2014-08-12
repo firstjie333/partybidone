@@ -11,6 +11,9 @@ angular.module('angularApp')
         $scope.bid_id=getLocal('details_bid').bid_id;
         $scope.bid_messages_count=getLocal('page_bid_messages')==null ? 0 : getLocal('page_bid_messages').length;
 
+        $scope.Page_Bid_Messages=getBidCensusMesages();
+
+
 
         $scope.goBackBidsLists=function()
         {
