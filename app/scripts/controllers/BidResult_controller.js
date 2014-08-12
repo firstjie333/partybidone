@@ -10,5 +10,16 @@ angular.module('angularApp')
 
 
 
+        $scope.goBackBidsLists=function()
+        {
+            $location.path('/BidLists');
+        }
+
+        $scope.goBidCensus=function()
+        {
+            $location.path('/BidCensus');
+        }
+
+
 
     });
