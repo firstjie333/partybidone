@@ -11,7 +11,7 @@
 
 
 <div class="wrapper">
-    <ul class="list-style-2" >
+    <ul  class="list-style-2">
         <li ng-repeat="page_bid_message in Page_Bid_Messages">
             <p >{{page_bid_message.bid_number}}</p>
             <i1 class="header-left" >{{page_bid_message.user_name}}</i1>
@@ -33,14 +33,12 @@
         <p>{{user_phone}}</p>
         <p>{{bid_information}}</p>
     </div>
-    <!--<div class="modal-footer">-->
-        <!--<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>-->
-    <!--</div>-->
 </div>
 
 
-<footer  class="my-footer" ng-disabled={{is_disabled_footer}}>
-     <p>竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
+<footer  class="my-footer" ng-switch="bid_result">
+    <p ng-switch-when ="success" >竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
+    <p ng-switch-when="failure">竞价失败</p>
 </footer>
 
 
