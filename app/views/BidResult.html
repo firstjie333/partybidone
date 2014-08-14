@@ -11,17 +11,37 @@
 
 
 <div class="wrapper">
-    <ul class="list-style-2">
+    <ul class="list-style-2" >
         <li ng-repeat="page_bid_message in Page_Bid_Messages">
-            <p class="my-ol">{{page_bid_message.bid_number}}</p>
+            <p >{{page_bid_message.bid_number}}</p>
             <i1 class="header-left" >{{page_bid_message.user_name}}</i1>
             <i2 class="header-left" >{{page_bid_message.user_phone}}</i2>
-            <p class="my-ol header-right">￥{{page_bid_message.user_price}}</p>
+            <p class="header-right">￥{{page_bid_message.user_price}}</p>
         </li>
-
     </ul>
 </div>
 
-<footer  class="my-footer" >
-    竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}
+
+<!--模态框-->
+<div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">竞价结果</h3>
+    </div>
+    <div class="modal-body" align="center">
+        <p>{{user_name}}   {{user_price}} </p>
+        <p>{{user_phone}}</p>
+        <p>{{bid_information}}</p>
+    </div>
+    <!--<div class="modal-footer">-->
+        <!--<button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>-->
+    <!--</div>-->
+</div>
+
+
+<footer  class="my-footer" ng-disabled={{is_disabled_footer}}>
+     <p>竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
 </footer>
+
+
+

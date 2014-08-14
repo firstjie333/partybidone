@@ -48,6 +48,10 @@ angular
             controller: 'BidResultController'
         })
         .when('/', {
+            templateUrl: 'views/BidResult.html',
+            controller: 'BidResultController'
+        })
+        .when('/BidCensus', {
             templateUrl: 'views/BidCensus.html',
             controller: 'BidCensusController'
         })

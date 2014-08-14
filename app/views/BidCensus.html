@@ -15,10 +15,13 @@
         <li ng-repeat="page_bid_message in Page_Bid_Messages">
             <!--<i1 class="header-left" >￥{{page_bid_message.user_price}}</i1>-->
             <!--<i2 class="header-right" >{{page_bid_message.user_price_count}}人</i2>-->
-            <p class="my-ol"></p>
             <p class="header-left" >￥{{page_bid_message.user_price}}</p>
             <p class="header-right">{{page_bid_message.user_price_count}}人</p>
         </li>
     </ul>
 </div>
 
+<footer  class="my-footer" ng-switch="bid_result">
+    <p ng-switch-when ="success" >竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
+    <p ng-switch-when="failure">此次竞价失败</p>
+</footer>

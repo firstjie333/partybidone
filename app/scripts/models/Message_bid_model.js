@@ -31,7 +31,8 @@
 
 
 
-// 验证信息,判断竞价短信信息是否符合格式要求,返回true/false
+
+// 验证信息,判断竞价短信信息是否符合格式要求,返回true/false(开头是JJ格式不论大小写)
         MessageBid.verifiedBidMessage=function(json_message)
         {
             if(json_message!=null)
@@ -43,6 +44,14 @@
             {   return false;}
         }
 
+//验证竞价价格是数字
+            MessageBid.isNumber=function(json_message)
+             {//需要在之前判断格式是否正确
+                     var message =(json_message.messages[0].message).replace(/\s/g, "");//去掉空格,其中\s：space表示空格，或者写为" "
+                     var user_price=message.substr(2);//去掉JJ
+                     return isNaN(user_price);//数字返回false
+
+             }
 
 
 

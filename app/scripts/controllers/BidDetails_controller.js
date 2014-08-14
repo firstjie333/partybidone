@@ -70,8 +70,9 @@ angular.module('angularApp')
                 Activity.writeCurrentActivityStatus("end")//活动状态变为end
                 buttonStatus();
 
-                removeLocal('page_bid_message');
-                setLocal('page_bid_message',getThisPageBidMessages());//将当前页面的bid_message写入localStorage：page_bid_messages
+                removeLocal('page_bid_messages');
+                //getThisPageBidMessages()已经是一个数组
+                setLocalString('page_bid_messages',getThisPageBidMessages());//将当前页面的bid_message写入localStorage：page_bid_messages
                 $location.path('/BidResult');//第四张卡要求跳转至竞价结果页面
             }
          }

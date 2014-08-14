@@ -617,7 +617,6 @@ footer {
 
 .list-style-2 li {
     line-height: 40px;
-	/*padding:10 10px;*/
 	border-bottom:1px solid #ccc;
 	border-top:1px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
@@ -803,15 +802,7 @@ footer {
     /*!important的意思是：可能原来的css中就有颜色控制,这时候如不加此句,则颜色可能会显示不出来*/
 }
 
-.my-ol{
-    padding: 0px;
-    margin: 0px 0px 0px 0px;
-    padding: 16px;
-    text-align: center;
-    position:fixed;
-    font-size: 16px;
-    min-height: 16px;
-}
+
 .my-footer{
     padding: 16px;
     text-align: center;

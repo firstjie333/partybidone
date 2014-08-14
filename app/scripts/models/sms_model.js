@@ -33,7 +33,17 @@ var native_accessor = {
         /*************竞价短信*********************/
         if(MessageBid.verifiedBidMessage(json_message))//验证短信格式
         {
-            MessageBid.sendBidMessage(json_message);//发送短信（包含验证是否报名，验证是否重复，保存信息，刷新页面函数）
+            if(! MessageBid.isNumber(json_message))//验证竞价价格是否为数字
+            {
+                console.log('是数字');
+                MessageBid.sendBidMessage(json_message);//发送短信（包含验证是否报名，验证是否重复，保存信息，刷新页面函数）
+            }
+            else
+            {
+                console.log('不是数字');
+                native_accessor.send_sms(json_message.messages[0].phone,'请注意短信格式！');
+
+            }
         }
     }
 };
