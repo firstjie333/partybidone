@@ -22,7 +22,7 @@ angular.module('angularApp')
         {
             $scope.bid_result="success";
             $scope.user_name=victor.user_name;
-            $scope.user_price="￥"+victor.user_price;
+            $scope.user_price=victor.user_price;
             $scope.user_phone=victor.user_phone;
             $scope.bid_information="竞价成功！";
         }

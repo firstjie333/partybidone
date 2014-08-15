@@ -28,10 +28,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3 id="myModalLabel" align="center">竞价结果</h3>
     </div>
-    <div class="modal-body" align="center">
-        <p>{{user_name}}   {{user_price}} </p>
-        <p>{{user_phone}}</p>
-        <p>{{bid_information}}</p>
+            <div class="modal-body" align="center" ng-switch="bid_result">
+                <div ng-switch-when="success">
+                <p>{{user_name}}   ￥{{user_price}} </p>
+                <p>{{user_phone}}</p>
+                <p>{{bid_information}}</p>
+            </div>
+            <div ng-switch-when="failuer">
+                 <p>{{bid_information}}</p>
+            </div>
     </div>
 </div>
 
