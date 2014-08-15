@@ -73,7 +73,7 @@ angular.module('angularApp')
                 removeLocal('page_bid_messages');
                 //getThisPageBidMessages()已经是一个数组
                 setLocalString('page_bid_messages',getThisPageBidMessages());//将当前页面的bid_message写入localStorage：page_bid_messages
-                $location.path('/BidResult');//第四张卡要求跳转至竞价结果页面
+                $location.path('/BidResult/'+'true');//第四张卡要求跳转至竞价结果页面
             }
          }
 

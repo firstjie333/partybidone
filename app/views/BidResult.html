@@ -34,14 +34,14 @@
                 <p>{{user_phone}}</p>
                 <p>{{bid_information}}</p>
             </div>
-            <div ng-switch-when="failuer">
+            <div ng-switch-when="failure">
                  <p>{{bid_information}}</p>
             </div>
     </div>
 </div>
 
 
-<footer  class="my-footer" >
+<footer  class="my-footer"  ng-show={{show_bid_result}}>
     <div ng-switch="bid_result">
         <p ng-switch-when ="success" >竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
         <p ng-switch-when="failure">竞价失败</p>
