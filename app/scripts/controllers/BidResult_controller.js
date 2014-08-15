@@ -16,16 +16,13 @@ angular.module('angularApp')
         if(victor==undefined)
         {
             $scope.bid_result="failure";
-            $scope.user_name=victor.user_name;
-            $scope.user_price=victor.user_price;
-            $scope.user_phone=victor.user_phone;
             $scope.bid_information="竞价失败！";
         }
         else
         {
             $scope.bid_result="success";
             $scope.user_name=victor.user_name;
-            $scope.user_price=victor.user_price;
+            $scope.user_price="￥"+victor.user_price;
             $scope.user_phone=victor.user_phone;
             $scope.bid_information="竞价成功！";
         }

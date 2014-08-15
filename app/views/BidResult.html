@@ -11,14 +11,14 @@
 
 
 <div class="wrapper">
-    <ul  class="list-style-2">
-        <li ng-repeat="page_bid_message in Page_Bid_Messages">
-            <p >{{page_bid_message.bid_number}}</p>
+    <ol   class="list-style-2 my-ol"  type="1">
+        <li ng-repeat="page_bid_message in Page_Bid_Messages" >
+            <!--<p >{{page_bid_message.bid_number}}</p>-->
             <i1 class="header-left" >{{page_bid_message.user_name}}</i1>
             <i2 class="header-left" >{{page_bid_message.user_phone}}</i2>
             <p class="header-right">￥{{page_bid_message.user_price}}</p>
         </li>
-    </ul>
+    </ol>
 </div>
 
 
@@ -26,7 +26,7 @@
 <div id="myModal" class="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">竞价结果</h3>
+        <h3 id="myModalLabel" align="center">竞价结果</h3>
     </div>
     <div class="modal-body" align="center">
         <p>{{user_name}}   {{user_price}} </p>
@@ -36,9 +36,11 @@
 </div>
 
 
-<footer  class="my-footer" ng-switch="bid_result">
-    <p ng-switch-when ="success" >竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
-    <p ng-switch-when="failure">竞价失败</p>
+<footer  class="my-footer" >
+    <div ng-switch="bid_result">
+        <p ng-switch-when ="success" >竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
+        <p ng-switch-when="failure">竞价失败</p>
+    </div>
 </footer>
 
 

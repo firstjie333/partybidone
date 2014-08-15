@@ -623,6 +623,7 @@ footer {
 	font-size:16px;
 	position: relative;
     height: 40px;
+    list-style-type:decimal;
 }
 
 .list-style-2 li a {
@@ -810,6 +811,15 @@ footer {
     font-size: 16px;
     min-height: 16px;
 
+}
+
+.my-ol{
+    padding-left: 0px;
+}
+
+.my-ol li{
+    list-style-type:decimal;
+    list-style-position:inside;
 }
 
 
