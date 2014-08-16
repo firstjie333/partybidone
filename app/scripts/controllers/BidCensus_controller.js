@@ -33,7 +33,7 @@ angular.module('angularApp')
         }
         $scope.goBidResult=function()
         {
-            $location.path('/BidResult');
+            $location.path('/BidResult/'+'false');
         }
 
 

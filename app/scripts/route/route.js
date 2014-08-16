@@ -43,7 +43,7 @@ angular
          templateUrl: 'views/BidDetails.html',
          controller: 'BidDetailsController'
       })
-        .when('/BidResult', {
+        .when('/BidResult/:is_show_model', {
             templateUrl: 'views/BidResult.html',
             controller: 'BidResultController'
         })
