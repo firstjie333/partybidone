@@ -48,7 +48,7 @@ angular.module('angularApp')
            function showModelAndHideFooter()
            {
                 $('#myModal').modal('show');//‘#myModel'表示页面id show为显示模态框，hide为隐藏
-                $scope.show_bid_result='false';
+                 document.getElementById("id_bid_result").style.display="none";
                 setTimeout(function ()
                    {
                        hideModelAndShowFooter();
@@ -59,7 +59,7 @@ angular.module('angularApp')
 
         function hideModelAndShowFooter()
         {
-            $scope.show_bid_result='true';
+           document.getElementById("id_bid_result").style.display="";
             $('#myModal').modal('hide');
         }
 
