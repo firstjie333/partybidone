@@ -72,7 +72,7 @@
                    }
                    else
                    {//竞价失败
-                    return undefined;
+                      return undefined;
                    }
 
                }
