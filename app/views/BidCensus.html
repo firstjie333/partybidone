@@ -1,0 +1,27 @@
+<header>
+     竞价{{bid_id}}（{{bid_messages_count}}人）
+    <div class="header-left">
+        <button class="btn-style btn-4" ng_click="goBackBidsLists()" >返回</button>
+    </div>
+    <div class="header-right">
+        <button class="btn-style btn-4 "  ng-click="goBidResult()">列表</button>
+    </div>
+</header>
+
+
+
+<div class="wrapper">
+    <ul class="list-style-2">
+        <li ng-repeat="page_bid_message in Page_Bid_Messages">
+            <!--<i1 class="header-left" >￥{{page_bid_message.user_price}}</i1>-->
+            <!--<i2 class="header-right" >{{page_bid_message.user_price_count}}人</i2>-->
+            <p class="header-left" >￥{{page_bid_message.user_price}}</p>
+            <p class="header-right">{{page_bid_message.user_price_count}}人</p>
+        </li>
+    </ul>
+</div>
+
+<footer  class="my-footer" ng-switch="bid_result">
+    <p ng-switch-when ="success" >竞价结果：{{user_name}}  ￥{{user_price}}   {{user_phone}}</p>
+    <p ng-switch-when="failure">竞价失败</p>
+</footer>

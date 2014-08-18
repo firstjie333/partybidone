@@ -611,17 +611,19 @@ footer {
 	margin:0;
 	width:100%;
 	text-align:left;
+
 }
 
 
 .list-style-2 li {
     line-height: 40px;
-	/*padding:10 10px;*/
 	border-bottom:1px solid #ccc;
 	border-top:1px solid #fff;
 	background-image:-webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #fcfcfc), color-stop(1, #ececec));
 	font-size:16px;
 	position: relative;
+    height: 40px;
+    list-style-type:decimal;
 }
 
 .list-style-2 li a {
@@ -802,6 +804,23 @@ footer {
 }
 
 
+.my-footer{
+    padding: 16px;
+    text-align: center;
+    position:fixed;
+    font-size: 16px;
+    min-height: 16px;
+
+}
+
+.my-ol{
+    padding-left: 0px;
+}
+
+.my-ol li{
+    list-style-type:decimal;
+    list-style-position:inside;
+}
 
 
 

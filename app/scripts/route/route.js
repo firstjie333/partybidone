@@ -43,6 +43,14 @@ angular
          templateUrl: 'views/BidDetails.html',
          controller: 'BidDetailsController'
       })
+        .when('/BidResult/:is_show_model', {
+            templateUrl: 'views/BidResult.html',
+            controller: 'BidResultController'
+        })
+        .when('/BidCensus', {
+            templateUrl: 'views/BidCensus.html',
+            controller: 'BidCensusController'
+        })
         .otherwise({
         redirectTo: '/'
       });

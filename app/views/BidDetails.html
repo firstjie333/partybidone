@@ -1,6 +1,5 @@
 <header>
     竞价{{the_bid_id}}（{{the_bid_count}}人）
-    <title>竞价{{the_bid_id}}（{{the_bid_count}}人）</title>
     <div class="header-left">
         <button class="btn-style btn-4" ng_click="goBackBidsLists()" >返回</button>
     </div>
@@ -14,14 +13,11 @@
 
 
 <div class="wrapper">
-    <ul class="list-style-2"  id="id_refresh_bidDetailsPage">
+    <ol  class="list-style-2 my-ol"  type="1"  id="id_refresh_bidDetailsPage">
         <li ng-repeat="bidMessage in BidsMessages">
-            <p>{{bidMessage.bid_number}}</p>
             <i1 class="header-left" >{{bidMessage.user_name}}</i1>
             <i2 class="header-left" >{{bidMessage.user_phone}}</i2>
         </li>
-
-        </li>
-    </ul>
+    </ol>
 </div>
 

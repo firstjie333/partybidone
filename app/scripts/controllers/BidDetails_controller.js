@@ -31,24 +31,35 @@ angular.module('angularApp')
             }
         }
 
- //显示已竞价的信息列表和人数
-        function showBidMessages()
+
+//  获得的当前页面的bid_messages信息
+        function   getThisPageBidMessages()
         {
             var bid_messages=getLocal('bid_messages');
             var this_page_messages=_.filter(bid_messages,function(bid_message)
             {
                 return bid_message.activity_name==getLocal('details_activity').activity_name  &&
-                       bid_message.bid_id == getLocal('details_bid').bid_id ;
+                    bid_message.bid_id == getLocal('details_bid').bid_id ;
             });
+            return this_page_messages;
+        }
+
+
+ //显示已竞价的信息列表和人数
+        function showBidMessages()
+        {
+            var  this_page_messages=getThisPageBidMessages();
             $scope.BidsMessages=this_page_messages;
             $scope.the_bid_count=$scope.BidsMessages==[] ? 0 : $scope.BidsMessages.length;
         }
+
 
 
          $scope.goBackBidsLists=function()
          {
              $location.path('/BidLists');
          }
+
 
         $scope.endBidDetails=function()
         {
@@ -58,6 +69,11 @@ angular.module('angularApp')
                 Bid.writeCurrentBidStatus("end_bid");//竞价状态变为结束
                 Activity.writeCurrentActivityStatus("end")//活动状态变为end
                 buttonStatus();
+
+                removeLocal('page_bid_messages');
+                //getThisPageBidMessages()已经是一个数组
+                setLocalString('page_bid_messages',getThisPageBidMessages());//将当前页面的bid_message写入localStorage：page_bid_messages
+                $location.path('/BidResult/'+'true');//第四张卡要求跳转至竞价结果页面
             }
          }
 
